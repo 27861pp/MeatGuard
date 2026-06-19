@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ความรู้เกี่ยวกับการเก็บรักษาเนื้อสัตว์ | MEAT GUARD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Kanit',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:40px;
+
+    background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.title{
+    text-align:center;
+    color:white;
+    font-size:48px;
+    font-weight:800;
+    margin-bottom:40px;
+}
+
+.container{
+    max-width:1800px;
+    margin:auto;
+
+    display:flex;
+    gap:30px;
+
+    justify-content:center;
+
+    align-items:stretch;
+    flex-wrap:wrap;
+}
+
+/* ✅ FIX หลัก: ทำให้ทุกช่องเท่ากันจริง */
+.card{
+    width:420px;
+    height:750px;
+
+    background:rgba(255,255,255,.97);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    display:flex;
+    flex-direction:column;
+}
+
+/* หัวข้อ */
+.card h2{
+    text-align:center;
+    font-size:30px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+/* หัวข้อสีแดง */
+.red-title{
+    color:#c40000;
+    font-size:23px;
+    font-weight:700;
+    margin-top:15px;
+    margin-bottom:10px;
+}
+
+/* ✅ FIX สำคัญ: ดันพื้นที่ให้เท่ากัน */
+.list{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ✅ FIX ระยะบรรทัดให้เท่ากันทุกช่อง */
+.list div{
+    margin-bottom:12px;
+    color:#333;
+    font-size:18px;
+    line-height:1.9;
+}
+
+/* ปุ่มย้อนกลับ */
+.back-btn{
+    position:fixed;
+    right:40px;
+    bottom:40px;
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    background:#c40000;
+
+    color:white;
+    text-decoration:none;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:38px;
+    font-weight:bold;
+
+    box-shadow:0 10px 25px rgba(196,0,0,.3);
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#990000;
+    transform:scale(1.1);
+}
+
+@media(max-width:1200px){
+    .container{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .card{
+        width:90%;
+        height:auto;
+    }
+
+    .title{
+        font-size:38px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 class="title">❄️ ความรู้เกี่ยวกับการเก็บรักษาเนื้อสัตว์</h1>
+
+<div class="container">
+
+    <!-- การ์ด 1 -->
+    <div class="card">
+
+        <h2>🧊 การเก็บรักษาในตู้เย็น</h2>
+
+        <div class="red-title">อุณหภูมิที่เหมาะสม</div>
+        <div class="list">
+            <div>🌡️ ควรเก็บที่ 0–4 องศาเซลเซียส</div>
+            <div>🦠 ช่วยชะลอการเจริญเติบโตของจุลินทรีย์</div>
+            <div>📦 ควรเก็บในภาชนะที่ปิดสนิท</div>
+            <div>🥗 แยกจากอาหารพร้อมรับประทาน</div>
+        </div>
+
+        <div class="red-title">ระยะเวลาการเก็บ</div>
+        <div class="list">
+            <div>🐷 เนื้อหมู : 2–3 วัน</div>
+            <div>🐮 เนื้อวัว : 3–5 วัน</div>
+            <div>🐔 เนื้อไก่ : 1–2 วัน</div>
+        </div>
+
+        <div class="red-title">ข้อควรระวัง</div>
+        <div class="list">
+            <div>⚠️ ไม่ควรวางไว้นอกตู้เย็นเป็นเวลานาน</div>
+            <div>🚪 หลีกเลี่ยงการเปิด-ปิดตู้เย็นบ่อย</div>
+        </div>
+
+    </div>
+
+    <!-- การ์ด 2 -->
+    <div class="card">
+
+        <h2>❄️ การเก็บรักษาในช่องแช่แข็ง</h2>
+
+        <div class="red-title">ประโยชน์</div>
+        <div class="list">
+            <div>📅 ช่วยยืดอายุการเก็บรักษา</div>
+            <div>🛡️ ลดการเสื่อมสภาพของเนื้อสัตว์</div>
+        </div>
+
+        <div class="red-title">วิธีการเก็บ</div>
+        <div class="list">
+            <div>🔪 แบ่งเนื้อสัตว์เป็นส่วนก่อนแช่แข็ง</div>
+            <div>📦 ใช้ถุงหรือภาชนะสำหรับแช่แข็ง</div>
+            <div>💨 ไล่อากาศออกให้มากที่สุด</div>
+        </div>
+
+        <div class="red-title">ข้อควรระวัง</div>
+        <div class="list">
+            <div>🚫 ไม่ควรแช่แข็งซ้ำหลังละลายแล้ว</div>
+            <div>📝 ควรติดฉลากวันที่เก็บรักษา</div>
+        </div>
+
+    </div>
+
+    <!-- การ์ด 3 -->
+    <div class="card">
+
+        <h2>⚠️ การสังเกตเนื้อสัตว์ก่อนบริโภค</h2>
+
+        <div class="red-title">สิ่งที่ควรตรวจสอบ</div>
+        <div class="list">
+            <div>🎨 สีของเนื้อสัตว์</div>
+            <div>👃 กลิ่นผิดปกติ</div>
+            <div>🖐️ พื้นผิวลื่นหรือเหนียว</div>
+        </div>
+
+        <div class="red-title">สัญญาณการเสื่อมสภาพ</div>
+        <div class="list">
+            <div>❌ มีกลิ่นเหม็นผิดปกติ</div>
+            <div>❌ สีคล้ำหรือเปลี่ยนสีมาก</div>
+            <div>❌ มีเมือกบนพื้นผิว</div>
+        </div>
+
+        <div class="red-title">คำแนะนำ</div>
+        <div class="list">
+            <div>🚫 ไม่ควรบริโภคหากผิดปกติ</div>
+            <div>✅ ควรใช้ระบบตรวจร่วมกับการสังเกต</div>
+        </div>
+
+    </div>
+
+</div>
+
+<a href="javascript:history.back()" class="back-btn">←</a>
+
+</body>
+</html>

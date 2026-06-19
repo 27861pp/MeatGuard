@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Did You Know | MEAT GUARD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Kanit',sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ffffff,
+    #ffeaea
+    );
+
+    padding:30px;
+
+}
+
+
+
+/* หัวข้อ */
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+}
+
+
+.header h1{
+
+    font-size:48px;
+
+    font-weight:800;
+
+    color:#b30000;
+
+}
+
+
+.header p{
+
+    font-size:18px;
+
+    color:#555;
+
+    margin-top:8px;
+
+}
+
+
+
+/* กล่อง 6 อัน */
+
+.container{
+
+    width:90%;
+
+    max-width:1200px;
+
+
+    margin:80px auto 0 auto;
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(3,1fr);
+
+
+    gap:25px;
+
+
+    align-items:center;
+
+}
+
+
+
+/* การ์ด */
+
+.card{
+
+    background:white;
+
+
+    border-radius:25px;
+
+
+    padding:25px;
+
+
+    min-height:230px;
+
+
+
+    border:2px solid #ffd0d0;
+
+
+
+    box-shadow:
+    0 10px 25px rgba(180,0,0,.15);
+
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+
+    box-shadow:
+    0 15px 35px rgba(180,0,0,.25);
+
+}
+
+
+
+
+.icon{
+
+    font-size:42px;
+
+}
+
+
+
+
+.card h2{
+
+    color:#c40000;
+
+
+    font-size:24px;
+
+
+    font-weight:700;
+
+
+    margin:12px 0;
+
+
+}
+
+
+
+
+.content{
+
+    display:none;
+
+
+    color:#333;
+
+
+    font-size:18px;
+
+
+    line-height:1.8;
+
+
+}
+
+
+
+.card.active .content{
+
+    display:block;
+
+}
+
+
+
+
+
+/* ปุ่มย้อนกลับ */
+
+.back-btn{
+
+    position:fixed;
+
+
+    right:30px;
+
+
+    bottom:30px;
+
+
+
+    width:70px;
+
+
+    height:70px;
+
+
+
+    background:#c40000;
+
+
+    color:white;
+
+
+
+    border-radius:50%;
+
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+
+    font-size:35px;
+
+
+    text-decoration:none;
+
+
+    box-shadow:
+    0 10px 25px rgba(196,0,0,.3);
+
+}
+
+
+
+.back-btn:hover{
+
+    transform:scale(1.1);
+
+    background:#990000;
+
+}
+
+
+
+/* มือถือ */
+
+@media(max-width:1000px){
+
+
+.container{
+
+    grid-template-columns:1fr;
+
+    margin-top:40px;
+
+}
+
+
+
+.header h1{
+
+    font-size:36px;
+
+}
+
+
+
+.card h2{
+
+    font-size:22px;
+
+}
+
+
+.content{
+
+    font-size:16px;
+
+}
+
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<div class="header">
+
+<h1>
+📌 Did You Know
+</h1>
+
+<p>
+MEAT GUARD | ศูนย์ความรู้การตรวจสอบความสดของเนื้อสัตว์
+</p>
+
+</div>
+
+
+
+
+<div class="container">
+
+
+
+<div class="card">
+
+<div class="icon">🥩</div>
+
+<h2>การตรวจความสดช่วยอะไร?</h2>
+
+<div class="content">
+
+การตรวจความสดของเนื้อสัตว์ช่วยให้ทราบคุณภาพก่อนนำไปประกอบอาหาร
+ช่วยลดความเสี่ยงจากเนื้อสัตว์ที่เสื่อมสภาพ
+และช่วยเพิ่มความมั่นใจในการบริโภค
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="icon">🦠</div>
+
+<h2>ลดความเสี่ยงอาหารเป็นพิษ</h2>
+
+<div class="content">
+
+ช่วยลดโอกาสได้รับเชื้อจุลินทรีย์ที่เป็นอันตราย
+ซึ่งบางชนิดไม่สามารถมองเห็นได้ด้วยตาเปล่า
+และอาจส่งผลต่อสุขภาพ
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="icon">🧪</div>
+
+<h2>ตรวจการเปลี่ยนแปลงของเนื้อ</h2>
+
+<div class="content">
+
+เมื่อเนื้อสัตว์เริ่มเสื่อมคุณภาพจะเกิดการเปลี่ยนแปลงทางเคมี
+และเกิดสารระเหยหรือก๊าซบางชนิด
+ซึ่งสามารถใช้วิเคราะห์ระดับความสดได้
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="icon">❄️</div>
+
+<h2>ช่วยการเก็บรักษา</h2>
+
+<div class="content">
+
+ช่วยให้รู้ว่าเนื้อสัตว์ควรเก็บในตู้เย็น
+แช่แข็ง
+หรือควรนำไปประกอบอาหารทันที
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="icon">💰</div>
+
+<h2>ลดการสูญเสียอาหาร</h2>
+
+<div class="content">
+
+ช่วยลดการทิ้งเนื้อสัตว์โดยไม่จำเป็น
+ใช้วัตถุดิบได้คุ้มค่า
+และลดค่าใช้จ่ายในชีวิตประจำวัน
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="icon">🛡️</div>
+
+<h2>เพิ่มความปลอดภัยอาหาร</h2>
+
+<div class="content">
+
+ช่วยให้ผู้บริโภคเลือกอาหารได้อย่างมั่นใจ
+ลดความเสี่ยงจากเนื้อสัตว์ที่ไม่ปลอดภัย
+และส่งเสริมการบริโภคที่ดีขึ้น
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+<a href="javascript:history.back()" class="back-btn">
+←
+</a>
+
+
+
+
+<script>
+
+
+const cards=document.querySelectorAll(".card");
+
+
+cards.forEach(card=>{
+
+
+card.addEventListener("click",()=>{
+
+
+cards.forEach(c=>{
+
+if(c!==card){
+
+c.classList.remove("active");
+
+}
+
+});
+
+
+card.classList.toggle("active");
+
+
+});
+
+
+});
+
+
+</script>
+
+
+
+</body>
+</html>

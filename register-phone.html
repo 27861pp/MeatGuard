@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สมัครสมาชิกด้วยเบอร์โทรศัพท์ | MEAT GUARD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Kanit',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#555,#222);
+}
+
+.card{
+    width:90%;
+    max-width:450px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    text-align:center;
+}
+
+.logo{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+h1{
+    color:#333;
+    margin-bottom:10px;
+}
+
+p{
+    color:#666;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#555;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#444;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#222;
+}
+
+.note{
+    margin-top:15px;
+    font-size:13px;
+    color:#888;
+}
+
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <div class="logo">📱</div>
+
+    <h1>สมัครสมาชิกด้วยเบอร์โทรศัพท์</h1>
+
+    <p>กรอกข้อมูลเพื่อเข้าใช้งานระบบ Meat Guard</p>
+
+    <form action="category.html">
+
+        <input
+        type="text"
+        placeholder="ชื่อ - นามสกุล"
+        required>
+
+        <input
+        type="tel"
+        placeholder="เบอร์โทรศัพท์"
+        required>
+
+        <input
+        type="password"
+        placeholder="ตั้งรหัสผ่าน"
+        required>
+
+        <button type="submit">
+            สมัครสมาชิก
+        </button>
+
+    </form>
+
+    <div class="note">
+        เมื่อลงทะเบียนสำเร็จ ระบบจะนำท่านไปยังหน้าหมวดหมู่การใช้งาน
+    </div>
+
+</div>
+
+</body>
+</html>

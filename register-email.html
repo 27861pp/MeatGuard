@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สมัครสมาชิกด้วยอีเมล | Meat Guard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Kanit',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.55)
+    ),
+    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+/* กล่องสมัครสมาชิก */
+
+.register-container{
+    width:100%;
+    max-width:500px;
+    margin:20px;
+}
+
+.register-card{
+    background:rgba(255,255,255,0.96);
+    backdrop-filter:blur(10px);
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+/* โลโก้ */
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo h1{
+    font-size:50px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.logo .meat{
+    color:#d90000;
+}
+
+.logo .guard{
+    color:#222;
+}
+
+.logo p{
+    color:#666;
+    margin-top:8px;
+    font-size:15px;
+}
+
+/* หัวข้อ */
+
+.title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.title h2{
+    color:#b30000;
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.title p{
+    color:#666;
+}
+
+/* ฟอร์ม */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:500;
+    color:#333;
+}
+
+.form-group input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-size:15px;
+    transition:.3s;
+}
+
+.form-group input:focus{
+    outline:none;
+    border-color:#d90000;
+    box-shadow:0 0 10px rgba(217,0,0,.15);
+}
+
+/* ปุ่ม */
+
+.register-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#d90000;
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.register-btn:hover{
+    background:#a80000;
+}
+
+.footer-text{
+    text-align:center;
+    margin-top:20px;
+    color:#666;
+    font-size:14px;
+}
+
+/* Responsive */
+
+@media(max-width:600px){
+
+    .register-card{
+        padding:25px;
+    }
+
+    .logo h1{
+        font-size:38px;
+    }
+
+    .title h2{
+        font-size:24px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="register-container">
+
+    <div class="register-card">
+
+        <div class="logo">
+            <h1>
+                <span class="meat">MEAT</span>
+                <span class="guard">GUARD</span>
+            </h1>
+
+            <p>SMART MEAT FRESHNESS DETECTION SYSTEM</p>
+        </div>
+
+        <div class="title">
+            <h2>สมัครสมาชิกด้วยอีเมล</h2>
+            <p>กรอกข้อมูลเพื่อเริ่มต้นใช้งานระบบ</p>
+        </div>
+
+        <!-- เมื่อกดลงทะเบียนจะไปหน้า category.html -->
+
+        <form action="category.html">
+
+            <div class="form-group">
+                <label>ชื่อ - นามสกุล</label>
+                <input
+                type="text"
+                placeholder="กรอกชื่อและนามสกุล"
+                required>
+            </div>
+
+            <div class="form-group">
+                <label>อีเมล</label>
+                <input
+                type="email"
+                placeholder="example@email.com"
+                required>
+            </div>
+
+            <div class="form-group">
+                <label>เบอร์โทรศัพท์</label>
+                <input
+                type="tel"
+                placeholder="08xxxxxxxx"
+                required>
+            </div>
+
+            <div class="form-group">
+                <label>รหัสผ่าน</label>
+                <input
+                type="password"
+                placeholder="สร้างรหัสผ่าน"
+                required>
+            </div>
+
+            <div class="form-group">
+                <label>ยืนยันรหัสผ่าน</label>
+                <input
+                type="password"
+                placeholder="ยืนยันรหัสผ่าน"
+                required>
+            </div>
+
+            <button
+            type="submit"
+            class="register-btn">
+                ลงทะเบียน
+            </button>
+
+        </form>
+
+        <div class="footer-text">
+            ลงทะเบียนสำเร็จ ระบบจะนำท่านไปยังหน้าหมวดหมู่การใช้งาน
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

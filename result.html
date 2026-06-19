@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ผลตรวจความสด | MEAT GUARD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Kanit',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:40px;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.55)
+    ),
+    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.title{
+    text-align:center;
+    color:white;
+    font-size:52px;
+    font-weight:800;
+    margin-bottom:50px;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    gap:35px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:380px;
+    min-height:620px;
+
+    background:rgba(255,255,255,.97);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    transition:.3s;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+/* พื้นที่รูปภาพ */
+
+.image-box{
+    width:100%;
+    height:260px;
+
+    background:linear-gradient(135deg,#f5f5f5,#e5e5e5);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:80px;
+}
+
+.content{
+    flex:1;
+
+    padding:25px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.content h2{
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.content p{
+    min-height:190px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    font-size:21px;
+    line-height:1.8;
+
+    color:#444;
+}
+
+.fresh{
+    color:#16a34a;
+}
+
+.warning{
+    color:#f59e0b;
+}
+
+.spoiled{
+    color:#c40000;
+}
+
+/* ปุ่มย้อนกลับ */
+
+.back-btn{
+    position:fixed;
+
+    right:40px;
+    bottom:40px;
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    background:#c40000;
+
+    color:white;
+
+    text-decoration:none;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:38px;
+    font-weight:bold;
+
+    box-shadow:0 10px 25px rgba(196,0,0,.3);
+}
+
+.back-btn:hover{
+    background:#990000;
+}
+
+@media(max-width:1200px){
+
+    .container{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .card{
+        width:90%;
+        max-width:500px;
+    }
+
+    .title{
+        font-size:40px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<h1 class="title">
+    🥩 ผลตรวจความสด
+</h1>
+
+<div class="container">
+
+    <!-- สดใหม่ -->
+
+    <div class="card">
+
+        <div class="image-box">🥩</div>
+
+        <div class="content">
+
+            <h2 class="fresh">สดใหม่</h2>
+
+            <p>
+                เนื้อหมู 2-3 วัน<br>
+                เนื้อวัว 3-5 วัน<br><br>
+
+                สามารถเก็บรักษาในตู้เย็น
+                และนำไปประกอบอาหารได้ตามปกติ
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- เริ่มเสื่อมสภาพ -->
+
+    <div class="card">
+
+        <div class="image-box">⚠️</div>
+
+        <div class="content">
+
+            <h2 class="warning">เริ่มเสื่อมสภาพ</h2>
+
+            <p>
+                ควรนำไปปรุงภายใน 24 ชั่วโมง<br><br>
+
+                ไม่ควรเก็บต่อเป็นเวลานาน
+                แม้จะอยู่ในตู้เย็น
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- เน่าเสีย -->
+
+    <div class="card">
+
+        <div class="image-box">❌</div>
+
+        <div class="content">
+
+            <h2 class="spoiled">เน่าเสีย</h2>
+
+            <p>
+                ไม่ควรเก็บรักษา
+                หรือนำมาบริโภคต่อ<br><br>
+
+                ควรกำจัดอย่างเหมาะสม
+                เพื่อความปลอดภัย
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<a href="category.html" class="back-btn">
+    ←
+</a>
+
+</body>
+</html>
