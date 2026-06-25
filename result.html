@@ -1,265 +1,326 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ผลตรวจความสด | MEAT GUARD</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meat Freshness Monitor</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Kanit',sans-serif;
-}
-
-body{
-    min-height:100vh;
-    padding:40px;
-
+  :root{
+    --bg:#0c1115; --bg2:#0f161c; --surface:#161f27; --surface2:#1c2731;
+    --line:#283541; --text:#e6edf3; --muted:#7d8d9c; --muted2:#5d6e7c;
+    --fresh:#2ee6a0; --warn:#f7b13b; --spoiled:#ff5a52;
+    --nh3:#5b9dff; --h2s:#ff8fb0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
     background:
-    linear-gradient(
-        rgba(0,0,0,.55),
-        rgba(0,0,0,.55)
-    ),
-    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');
+      radial-gradient(1200px 600px at 50% -10%, rgba(46,230,160,.05), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:"Space Grotesk",system-ui,sans-serif;
+    min-height:100vh; padding:clamp(16px,4vw,40px);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
 
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-}
+  /* ---- header ---- */
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--surface2),var(--surface));
+    border:1px solid var(--line);display:grid;place-items:center;font-size:18px}
+  .brand h1{font-size:18px;font-weight:600;letter-spacing:.2px}
+  .brand p{font-size:12px;color:var(--muted);font-family:"JetBrains Mono",monospace;letter-spacing:.5px}
+  .conn{display:flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:12px;
+    color:var(--muted);padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--muted2)}
+  .dot.live{background:var(--fresh);box-shadow:0 0 0 0 rgba(46,230,160,.5);animation:pulse 2s infinite}
+  .dot.down{background:var(--spoiled)}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,230,160,.45)}70%{box-shadow:0 0 0 7px rgba(46,230,160,0)}100%{box-shadow:0 0 0 0 rgba(46,230,160,0)}}
 
-.title{
-    text-align:center;
-    color:white;
-    font-size:52px;
-    font-weight:800;
-    margin-bottom:50px;
-}
+  /* ---- status hero ---- */
+  .hero{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    background:var(--surface);padding:clamp(22px,4vw,34px);margin-bottom:18px}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.14;pointer-events:none;
+    background:radial-gradient(700px 220px at 18% 0%, var(--accent,var(--muted2)), transparent 70%)}
+  .hero-row{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .status-block .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--muted)}
+  .status-word{font-size:clamp(44px,9vw,76px);font-weight:700;line-height:.95;margin-top:6px;
+    color:var(--accent,var(--text));letter-spacing:-1px}
+  .status-sub{margin-top:10px;color:var(--muted);font-size:13px;font-family:"JetBrains Mono",monospace}
+  .ring{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+    border:2px solid var(--accent,var(--line));
+    background:radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--accent,#888) 18%, transparent), transparent 70%)}
+  .ring .glyph{font-size:46px}
 
-.container{
-    max-width:1400px;
-    margin:auto;
+  /* ---- progress ---- */
+  .progress{position:relative;margin-top:22px;height:6px;border-radius:6px;background:var(--bg2);overflow:hidden}
+  .progress span{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:6px;
+    background:linear-gradient(90deg,var(--accent,var(--muted2)),color-mix(in srgb,var(--accent,#888) 40%,transparent));
+    transition:width .6s ease}
+  .progress-label{position:relative;margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted)}
 
-    display:flex;
-    justify-content:center;
-    gap:35px;
-    flex-wrap:wrap;
-}
+  /* ---- metric grid ---- */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  @media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}}
+  .card{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:18px}
+  .card .label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .card .label .tag{width:8px;height:8px;border-radius:2px}
+  .card .val{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:clamp(28px,5vw,38px);
+    margin-top:12px;line-height:1}
+  .card .unit{font-size:14px;color:var(--muted);font-weight:500;margin-left:4px}
+  .card .meta{margin-top:8px;font-size:12px;color:var(--muted2);font-family:"JetBrains Mono",monospace}
+  .card .meta.alert{color:var(--spoiled)}
+  .card .meta.warn{color:var(--warn)}
 
-.card{
-    width:380px;
-    min-height:620px;
+  /* ---- chart ---- */
+  .panel{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:20px}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+  .panel-head h2{font-size:15px;font-weight:600}
+  .legend{display:flex;gap:16px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted)}
+  .legend i{display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  .chart-box{position:relative;height:300px}
+  .empty{display:grid;place-items:center;height:300px;text-align:center;color:var(--muted);
+    font-family:"JetBrains Mono",monospace;font-size:13px;gap:6px;padding:20px}
+  .empty .big{font-size:15px;color:var(--text)}
 
-    background:rgba(255,255,255,.97);
-
-    border-radius:25px;
-
-    overflow:hidden;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
-
-    transition:.3s;
-
-    display:flex;
-    flex-direction:column;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-}
-
-/* พื้นที่รูปภาพ */
-
-.image-box{
-    width:100%;
-    height:260px;
-
-    background:linear-gradient(135deg,#f5f5f5,#e5e5e5);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:80px;
-}
-
-.content{
-    flex:1;
-
-    padding:25px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
-.content h2{
-    font-size:34px;
-    font-weight:800;
-    margin-bottom:20px;
-}
-
-.content p{
-    min-height:190px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    font-size:21px;
-    line-height:1.8;
-
-    color:#444;
-}
-
-.fresh{
-    color:#16a34a;
-}
-
-.warning{
-    color:#f59e0b;
-}
-
-.spoiled{
-    color:#c40000;
-}
-
-/* ปุ่มย้อนกลับ */
-
-.back-btn{
-    position:fixed;
-
-    right:40px;
-    bottom:40px;
-
-    width:75px;
-    height:75px;
-
-    border-radius:50%;
-
-    background:#c40000;
-
-    color:white;
-
-    text-decoration:none;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:38px;
-    font-weight:bold;
-
-    box-shadow:0 10px 25px rgba(196,0,0,.3);
-}
-
-.back-btn:hover{
-    background:#990000;
-}
-
-@media(max-width:1200px){
-
-    .container{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .card{
-        width:90%;
-        max-width:500px;
-    }
-
-    .title{
-        font-size:40px;
-    }
-}
-
+  footer{margin-top:22px;text-align:center;color:var(--muted2);font-size:12px;font-family:"JetBrains Mono",monospace}
+  .err{display:none;margin-bottom:18px;border:1px solid var(--spoiled);border-radius:12px;
+    background:color-mix(in srgb,var(--spoiled) 10%,var(--surface));padding:14px 18px;font-size:13px;
+    color:var(--text);font-family:"JetBrains Mono",monospace;line-height:1.6}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<h1 class="title">
-    🥩 ผลตรวจความสด
-</h1>
-
-<div class="container">
-
-    <!-- สดใหม่ -->
-
-    <div class="card">
-
-        <div class="image-box">🥩</div>
-
-        <div class="content">
-
-            <h2 class="fresh">สดใหม่</h2>
-
-            <p>
-                เนื้อหมู 2-3 วัน<br>
-                เนื้อวัว 3-5 วัน<br><br>
-
-                สามารถเก็บรักษาในตู้เย็น
-                และนำไปประกอบอาหารได้ตามปกติ
-            </p>
-
-        </div>
-
+  <header>
+    <div class="brand">
+      <div class="mark">🥩</div>
+      <div>
+        <h1>Meat Freshness Monitor</h1>
+        <p>NH₃ · H₂S · TEMP · HUMIDITY</p>
+      </div>
     </div>
+    <div class="conn"><span class="dot" id="connDot"></span><span id="connText">connecting…</span></div>
+  </header>
 
-    <!-- เริ่มเสื่อมสภาพ -->
+  <div class="err" id="errBox"></div>
 
-    <div class="card">
-
-        <div class="image-box">⚠️</div>
-
-        <div class="content">
-
-            <h2 class="warning">เริ่มเสื่อมสภาพ</h2>
-
-            <p>
-                ควรนำไปปรุงภายใน 24 ชั่วโมง<br><br>
-
-                ไม่ควรเก็บต่อเป็นเวลานาน
-                แม้จะอยู่ในตู้เย็น
-            </p>
-
-        </div>
-
+  <!-- STATUS HERO -->
+  <section class="hero" id="hero" style="--accent:var(--muted2)">
+    <div class="hero-row">
+      <div class="status-block">
+        <div class="eyebrow">Current status</div>
+        <div class="status-word" id="statusWord">—</div>
+        <div class="status-sub" id="statusSub">waiting for first reading…</div>
+      </div>
+      <div class="ring" id="ring"><div class="glyph" id="ringGlyph">·</div></div>
     </div>
+    <div class="progress"><span id="progBar"></span></div>
+    <div class="progress-label" id="progLabel">minute 0 / 120</div>
+  </section>
 
-    <!-- เน่าเสีย -->
-
+  <!-- METRIC CARDS -->
+  <div class="grid">
     <div class="card">
-
-        <div class="image-box">❌</div>
-
-        <div class="content">
-
-            <h2 class="spoiled">เน่าเสีย</h2>
-
-            <p>
-                ไม่ควรเก็บรักษา
-                หรือนำมาบริโภคต่อ<br><br>
-
-                ควรกำจัดอย่างเหมาะสม
-                เพื่อความปลอดภัย
-            </p>
-
-        </div>
-
+      <div class="label">Temperature</div>
+      <div class="val"><span id="vTemp">—</span><span class="unit">°C</span></div>
+      <div class="meta" id="mTemp">—</div>
     </div>
+    <div class="card">
+      <div class="label">Humidity</div>
+      <div class="val"><span id="vHum">—</span><span class="unit">%RH</span></div>
+      <div class="meta" id="mHum">—</div>
+    </div>
+    <div class="card">
+      <div class="label"><span class="tag" style="background:var(--nh3)"></span>NH₃ Ammonia</div>
+      <div class="val"><span id="vNh3">—</span><span class="unit">ppm</span></div>
+      <div class="meta" id="mNh3">warn ≥ 25 ppm</div>
+    </div>
+    <div class="card">
+      <div class="label"><span class="tag" style="background:var(--h2s)"></span>H₂S Sulfide</div>
+      <div class="val"><span id="vH2s">—</span><span class="unit">ppm</span></div>
+      <div class="meta" id="mH2s">warn ≥ 5 ppm</div>
+    </div>
+  </div>
 
+  <!-- CHART -->
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Gas trend over time</h2>
+      <div class="legend">
+        <span><i style="background:var(--nh3)"></i>NH₃</span>
+        <span><i style="background:var(--h2s)"></i>H₂S</span>
+      </div>
+    </div>
+    <div class="chart-box">
+      <div class="empty" id="chartEmpty"><div class="big">No history yet</div><div>Readings appear here every minute once the ESP32 starts sending.</div></div>
+      <canvas id="chart" style="display:none"></canvas>
+    </div>
+  </section>
+
+  <footer id="foot">— · live from Firebase Realtime Database</footer>
 </div>
 
-<a href="category.html" class="back-btn">
-    ←
-</a>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
 
+  // ====== ใส่ค่าของคุณ ======
+  // *** ต้องเพิ่ม databaseURL เอง — เอามาจากหน้า Realtime Database (ลงท้าย .firebasedatabase.app) ***
+  const firebaseConfig = {
+    apiKey: "AIzaSyA4sLKQy-mrmfcYNsptYo8fCt0H63gDGE4",
+    authDomain: "meat-83f83.firebaseapp.com",
+    databaseURL: "https://meat-83f83-default-rtdb.asia-southeast1.firebasedatabase.app", // <-- แก้ region ให้ตรงของจริง
+    projectId: "meat-83f83",
+    storageBucket: "meat-83f83.firebasestorage.app",
+    messagingSenderId: "619234872715",
+    appId: "1:619234872715:web:a9f953a8cb5434ef97338e"
+  };
+  // =========================
+
+  const TEST_DURATION = 120;
+  const TH = { nh3Fresh:10, nh3Warn:25, h2sFresh:1, h2sWarn:5 };
+  const STATUS = {
+    FRESH:   { accent:"var(--fresh)",   glyph:"✓", sub:"ปลอดภัย" },
+    WARNING: { accent:"var(--warn)",    glyph:"!", sub:"เริ่มมีกลิ่น" },
+    SPOILED: { accent:"var(--spoiled)", glyph:"✕", sub:"เน่าแล้ว" }
+  };
+
+  const $ = id => document.getElementById(id);
+  const fmt = (n,d=1)=> (typeof n==="number" && isFinite(n)) ? n.toFixed(d) : "—";
+
+  let db;
+  try {
+    const app = initializeApp(firebaseConfig);
+    db = getDatabase(app);
+  } catch(e){
+    showError("เชื่อมต่อ Firebase ไม่ได้: " + e.message + "\nตรวจสอบว่าใส่ databaseURL ถูกต้องและสร้าง Realtime Database แล้ว");
+  }
+
+  function showError(msg){
+    const box = $("errBox");
+    box.style.display="block";
+    box.textContent = msg;
+  }
+
+  if (db){
+    // connection state
+    onValue(ref(db,".info/connected"), snap=>{
+      const ok = snap.val()===true;
+      $("connDot").className = "dot " + (ok?"live":"down");
+      $("connText").textContent = ok ? "live" : "offline";
+    });
+
+    // latest snapshot
+    onValue(ref(db,"meat/latest"), snap=>{
+      const d = snap.val();
+      if(!d) return;
+      updateHero(d);
+      updateCards(d);
+      $("foot").textContent = "minute " + (d.minute ?? "—") + " · live from Firebase Realtime Database";
+    }, err=> showError("อ่าน /meat/latest ไม่ได้: "+err.message+"\n(ถ้าเป็นเรื่องสิทธิ์ ให้เช็ค Database Rules)"));
+
+    // history -> chart
+    onValue(ref(db,"meat/history"), snap=>{
+      const obj = snap.val();
+      renderChart(obj);
+    }, err=> showError("อ่าน /meat/history ไม่ได้: "+err.message));
+  }
+
+  function updateHero(d){
+    const s = STATUS[d.status] || {accent:"var(--muted2)",glyph:"·",sub:""};
+    $("hero").style.setProperty("--accent", s.accent);
+    $("ring").style.setProperty("--accent", s.accent);
+    $("statusWord").textContent = d.status || "—";
+    $("statusWord").style.color = s.accent;
+    $("statusSub").textContent = s.sub;
+    $("ringGlyph").textContent = s.glyph;
+
+    const m = Math.min(d.minute || 0, TEST_DURATION);
+    $("progBar").style.width = (m/TEST_DURATION*100) + "%";
+    $("progLabel").textContent = "minute " + (d.minute ?? 0) + " / " + TEST_DURATION;
+  }
+
+  function updateCards(d){
+    $("vTemp").textContent = fmt(d.temp,1);
+    $("vHum").textContent  = fmt(d.humidity,0);
+    $("vNh3").textContent  = fmt(d.nh3,2);
+    $("vH2s").textContent  = fmt(d.h2s,2);
+
+    $("mTemp").textContent = (d.chk135==="OK"||true) ? "sensor live" : "—";
+    $("mHum").textContent  = "DHT22";
+    setGasMeta($("mNh3"), d.nh3, TH.nh3Fresh, TH.nh3Warn, "ppm");
+    setGasMeta($("mH2s"), d.h2s, TH.h2sFresh, TH.h2sWarn, "ppm");
+  }
+
+  function setGasMeta(el, v, fresh, warn, unit){
+    if(typeof v!=="number"){ el.textContent="—"; el.className="meta"; return; }
+    if(v>=warn){ el.textContent="✕ over "+warn+" "+unit; el.className="meta alert"; }
+    else if(v>=fresh){ el.textContent="! over "+fresh+" "+unit; el.className="meta warn"; }
+    else { el.textContent="✓ within safe range"; el.className="meta"; }
+  }
+
+  // ---- Chart.js ----
+  let chart;
+  function renderChart(obj){
+    if(!obj){ return; }
+    const rows = Object.values(obj)
+      .filter(r=>r && typeof r.minute==="number")
+      .sort((a,b)=>a.minute-b.minute);
+    if(rows.length===0) return;
+
+    $("chartEmpty").style.display="none";
+    $("chart").style.display="block";
+
+    const labels = rows.map(r=>r.minute);
+    const nh3 = rows.map(r=>r.nh3);
+    const h2s = rows.map(r=>r.h2s);
+
+    const css = getComputedStyle(document.documentElement);
+    const cNh3 = css.getPropertyValue("--nh3").trim();
+    const cH2s = css.getPropertyValue("--h2s").trim();
+    const cLine = css.getPropertyValue("--line").trim();
+    const cMuted = css.getPropertyValue("--muted").trim();
+
+    const data = {
+      labels,
+      datasets:[
+        { label:"NH₃ (ppm)", data:nh3, borderColor:cNh3, backgroundColor:cNh3,
+          tension:.3, pointRadius:0, borderWidth:2, yAxisID:"y" },
+        { label:"H₂S (ppm)", data:h2s, borderColor:cH2s, backgroundColor:cH2s,
+          tension:.3, pointRadius:0, borderWidth:2, yAxisID:"y1" }
+      ]
+    };
+    const opts = {
+      responsive:true, maintainAspectRatio:false, animation:{duration:300},
+      interaction:{mode:"index",intersect:false},
+      plugins:{ legend:{display:false},
+        tooltip:{ backgroundColor:"#0c1115", borderColor:cLine, borderWidth:1,
+          titleColor:"#e6edf3", bodyColor:"#e6edf3",
+          callbacks:{ title:i=>"minute "+i[0].label } } },
+      scales:{
+        x:{ grid:{color:cLine}, ticks:{color:cMuted,maxTicksLimit:12,
+            font:{family:"JetBrains Mono"}}, title:{display:true,text:"minute",color:cMuted} },
+        y:{ position:"left", grid:{color:cLine}, ticks:{color:cNh3,font:{family:"JetBrains Mono"}},
+            title:{display:true,text:"NH₃ ppm",color:cNh3} },
+        y1:{ position:"right", grid:{display:false}, ticks:{color:cH2s,font:{family:"JetBrains Mono"}},
+            title:{display:true,text:"H₂S ppm",color:cH2s} }
+      }
+    };
+
+    if(chart){ chart.data=data; chart.update(); }
+    else { chart = new Chart($("chart"), {type:"line", data, options:opts}); }
+  }
+</script>
 </body>
 </html>
