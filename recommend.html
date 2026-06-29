@@ -8,23 +8,32 @@
 
 <title>Meat Guard | คำแนะนำการบริโภค</title>
 
+
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 
 <style>
 
+
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Kanit',sans-serif;
+
 }
+
 
 
 body{
 
+
 min-height:100vh;
 
+
 background:
+
 linear-gradient(
 rgba(0,0,0,.65),
 rgba(0,0,0,.65)
@@ -34,30 +43,38 @@ url("https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fi
 
 
 background-size:cover;
+
 background-position:center;
+
 
 padding:30px;
 
 color:white;
 
+
 }
+
 
 
 
 .container{
 
 max-width:1100px;
+
 margin:auto;
 
 }
 
 
+
 .title{
 
 text-align:center;
+
 margin-bottom:40px;
 
 }
+
 
 
 .title h1{
@@ -71,6 +88,7 @@ text-shadow:0 0 20px red;
 }
 
 
+
 .title p{
 
 font-size:20px;
@@ -79,9 +97,10 @@ font-size:20px;
 
 
 
-/* CARD */
+
 
 .card{
+
 
 background:white;
 
@@ -94,6 +113,7 @@ padding:25px;
 margin-bottom:25px;
 
 box-shadow:0 10px 30px rgba(0,0,0,.4);
+
 
 }
 
@@ -143,7 +163,9 @@ line-height:1.9;
 
 
 
+
 .btn{
+
 
 display:inline-block;
 
@@ -159,7 +181,10 @@ text-decoration:none;
 
 border-radius:10px;
 
+cursor:pointer;
+
 }
+
 
 
 .btn:hover{
@@ -167,6 +192,7 @@ border-radius:10px;
 background:#990000;
 
 }
+
 
 
 
@@ -178,7 +204,12 @@ margin-top:30px;
 
 }
 
+
+
+
+
 .back-btn{
+
 
 position:fixed;
 
@@ -186,11 +217,13 @@ top:25px;
 
 left:25px;
 
+
 background:#101923;
 
 border:1px solid #243444;
 
 color:white;
+
 
 padding:10px 20px;
 
@@ -200,46 +233,192 @@ font-size:16px;
 
 cursor:pointer;
 
-transition:.3s;
 
 z-index:10;
 
+
 }
+
+
 
 
 .back-btn:hover{
 
 background:#2196ff;
 
-transform:translateX(-5px);
+}
+
+
+
+
+
+
+/* เลือกเมนู */
+
+.food-select{
+
+
+display:none;
+
+
+position:fixed;
+
+
+top:0;
+
+left:0;
+
+
+width:100%;
+
+height:100%;
+
+
+background:rgba(0,0,0,.8);
+
+
+align-items:center;
+
+justify-content:center;
+
+
+z-index:20;
+
 
 }
 
+
+
+
+.food-box{
+
+
+background:white;
+
+
+color:#333;
+
+
+padding:30px;
+
+
+border-radius:20px;
+
+
+width:350px;
+
+
+text-align:center;
+
+
+}
+
+
+
+.food-box h2{
+
+margin-bottom:20px;
+
+}
+
+
+
+
+.food-btn{
+
+
+display:block;
+
+
+width:100%;
+
+
+padding:12px;
+
+
+margin:10px 0;
+
+
+background:#e60000;
+
+
+color:white;
+
+
+text-decoration:none;
+
+
+border-radius:10px;
+
+
+cursor:pointer;
+
+
+}
+
+
+
+.food-btn:hover{
+
+background:#990000;
+
+}
+
+
+
+
+.close{
+
+
+background:#555;
+
+}
+
+
+
 </style>
 
+
 </head>
+
 
 
 <body>
 
 
+<button class="back-btn" onclick="history.back()">
+
+← ย้อนกลับ
+
+</button>
+
+
+
+
 <div class="container">
+
 
 
 <div class="title">
 
+
 <h1>🥩 Meat Guard</h1>
 
+
 <p>
+
 คำแนะนำการบริโภคจากผลตรวจความสดของเนื้อสัตว์
+
 </p>
+
 
 </div>
 
 
 
 
-<!-- FRESH -->
+
+
 
 <div class="card green">
 
@@ -261,6 +440,7 @@ NH3 ต่ำกว่า 10 ppm
 H2S ต่ำกว่า 1 ppm
 
 
+
 <br><br>
 
 
@@ -270,15 +450,16 @@ H2S ต่ำกว่า 1 ppm
 
 แช่เย็น 0-4°C
 
-สามารถเก็บได้ประมาณ
+<br>
 
-<b>2-3 วัน</b>
+เก็บได้ประมาณ <b>2-3 วัน</b>
+
 
 
 <br><br>
 
 
-<b>เมนูอาหารง่าย ๆ:</b>
+<b>เมนูอาหารง่าย ๆ</b>
 
 <br>
 
@@ -297,36 +478,35 @@ H2S ต่ำกว่า 1 ppm
 🍛 ข้าวผัดเนื้อ
 
 
+
 <br>
 
 
-<a class="btn"
-target="_blank"
-
-href="https://www.youtube.com/results?search_query=เมนูเนื้อทำง่าย">
+<a class="btn" onclick="openFood()">
 
 ▶ ดูคลิปทำอาหาร
 
 </a>
 
 
-</div>
 
 </div>
 
 
+</div>
 
 
 
 
 
-<!-- WARNING -->
+
 
 
 <div class="card yellow">
 
 
 <h2>🟡 ควรรีบใช้ (WARNING)</h2>
+
 
 
 <div class="info">
@@ -343,6 +523,7 @@ NH3 10-25 ppm
 H2S 1-5 ppm
 
 
+
 <br><br>
 
 
@@ -350,15 +531,17 @@ H2S 1-5 ppm
 
 <br>
 
-ควรนำไปปรุงอาหารภายใน
+ควรปรุงอาหารภายใน
 
 <b>24 ชั่วโมง</b>
+
 
 
 <br><br>
 
 
-<b>เมนูอาหารแนะนำ:</b>
+<b>เมนูอาหารแนะนำ</b>
+
 
 <br>
 
@@ -377,32 +560,27 @@ H2S 1-5 ppm
 🌶 ผัดพริกแกงเนื้อ
 
 
+
 <br>
 
 
-<a class="btn"
-
-target="_blank"
-
-href="https://www.youtube.com/results?search_query=วิธีทำเนื้อย่างง่ายๆ">
+<a class="btn" onclick="openFood()">
 
 ▶ ดูคลิปทำอาหาร
 
 </a>
 
 
-</div>
 
 </div>
 
 
+</div>
 
 
 
 
 
-
-<!-- SPOILED -->
 
 
 <div class="card red">
@@ -425,10 +603,11 @@ NH3 มากกว่า 25 ppm
 H2S มากกว่า 5 ppm
 
 
+
 <br><br>
 
 
-<b>คำแนะนำ:</b>
+<b>คำแนะนำ</b>
 
 <br>
 
@@ -439,10 +618,12 @@ H2S มากกว่า 5 ppm
 ควรคัดแยกและทิ้ง
 
 
+
 </div>
 
 
 </div>
+
 
 
 
@@ -455,13 +636,134 @@ H2S มากกว่า 5 ppm
 </div>
 
 
+
 </div>
 
 
-</body>
-<button class="back-btn" onclick="history.back()">
 
-← ย้อนกลับ
+
+
+
+
+
+
+<!-- เลือกเนื้อ -->
+
+<div class="food-select" id="foodBox">
+
+
+<div class="food-box">
+
+
+<h2>
+
+เลือกชนิดเนื้อสัตว์
+
+</h2>
+
+
+
+
+<a class="food-btn"
+
+target="_blank"
+
+href="https://www.youtube.com/results?search_query=เมนูเนื้อวัวทำง่าย">
+
+🥩 เนื้อวัว
+
+</a>
+
+
+
+
+
+<a class="food-btn"
+
+target="_blank"
+
+href="https://www.youtube.com/results?search_query=เมนูหมูทำง่าย">
+
+🐷 เนื้อหมู
+
+</a>
+
+
+
+
+
+<a class="food-btn"
+
+target="_blank"
+
+href="https://www.youtube.com/results?search_query=เมนูไก่ทำง่าย">
+
+🍗 เนื้อไก่
+
+</a>
+
+
+
+
+
+<a class="food-btn"
+
+target="_blank"
+
+href="https://www.youtube.com/results?search_query=เมนูปลาทำง่าย">
+
+🐟 ปลา
+
+</a>
+
+
+
+
+
+<button class="food-btn close" onclick="closeFood()">
+
+ปิด
 
 </button>
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+
+function openFood(){
+
+document.getElementById("foodBox").style.display="flex";
+
+}
+
+
+
+function closeFood(){
+
+document.getElementById("foodBox").style.display="none";
+
+}
+
+
+</script>
+
+
+
+
+</body>
+
+
 </html>
