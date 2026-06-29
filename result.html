@@ -29,7 +29,50 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:1080px;margin:0 auto}
+/* ---- Back Button ---- */
 
+.back-btn{
+
+  position:fixed;
+
+  right:30px;
+  bottom:30px;
+
+  width:60px;
+  height:60px;
+
+  border-radius:50%;
+
+  background:#1c2731;
+
+  border:1px solid #283541;
+
+  color:white;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:30px;
+
+  text-decoration:none;
+
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+
+  transition:.3s;
+
+}
+
+
+.back-btn:hover{
+
+  transform:translateY(-5px);
+
+  background:#2ee6a0;
+
+  color:#0c1115;
+
+}
   /* ---- header ---- */
   header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
   .brand{display:flex;align-items:center;gap:12px}
@@ -321,6 +364,33 @@
     if(chart){ chart.data=data; chart.update(); }
     else { chart = new Chart($("chart"), {type:"line", data, options:opts}); }
   }
+  
 </script>
+<a href="category.html" class="back-btn">
+←
+</a>
+</body>
+
+</html>
+  <footer id="foot">
+  — · live from Firebase Realtime Database
+  </footer>
+
+</div>
+
+
+<a href="category.html" class="back-btn">
+←
+</a>
+
+
+<script type="module">
+
+// Firebase เดิมของคุณอยู่ตรงนี้
+
+
+</script>
+
+
 </body>
 </html>
