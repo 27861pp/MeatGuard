@@ -1,245 +1,467 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ความรู้เกี่ยวกับการเก็บรักษาเนื้อสัตว์ | MEAT GUARD</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Meat Guard | คำแนะนำการบริโภค</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Kanit',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Kanit',sans-serif;
 }
+
 
 body{
-    min-height:100vh;
-    padding:40px;
 
-    background:
-    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');
+min-height:100vh;
 
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.65)
+),
+
+url("https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1920&q=80");
+
+
+background-size:cover;
+background-position:center;
+
+padding:30px;
+
+color:white;
+
 }
 
-.title{
-    text-align:center;
-    color:white;
-    font-size:48px;
-    font-weight:800;
-    margin-bottom:40px;
-}
+
 
 .container{
-    max-width:1800px;
-    margin:auto;
 
-    display:flex;
-    gap:30px;
+max-width:1100px;
+margin:auto;
 
-    justify-content:center;
-
-    align-items:stretch;
-    flex-wrap:wrap;
 }
 
-/* ✅ FIX หลัก: ทำให้ทุกช่องเท่ากันจริง */
+
+.title{
+
+text-align:center;
+margin-bottom:40px;
+
+}
+
+
+.title h1{
+
+font-size:55px;
+
+color:#ff2222;
+
+text-shadow:0 0 20px red;
+
+}
+
+
+.title p{
+
+font-size:20px;
+
+}
+
+
+
+/* CARD */
+
 .card{
-    width:420px;
-    height:750px;
 
-    background:rgba(255,255,255,.97);
+background:white;
 
-    border-radius:25px;
+color:#333;
 
-    padding:30px;
+border-radius:20px;
 
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
+padding:25px;
 
-    display:flex;
-    flex-direction:column;
+margin-bottom:25px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+
 }
 
-/* หัวข้อ */
+
+
 .card h2{
-    text-align:center;
-    font-size:30px;
-    font-weight:800;
-    margin-bottom:20px;
+
+font-size:30px;
+
+margin-bottom:15px;
+
 }
 
-/* หัวข้อสีแดง */
-.red-title{
-    color:#c40000;
-    font-size:23px;
-    font-weight:700;
-    margin-top:15px;
-    margin-bottom:10px;
+
+
+.green{
+
+border-left:10px solid #00c853;
+
 }
 
-/* ✅ FIX สำคัญ: ดันพื้นที่ให้เท่ากัน */
-.list{
-    flex:1;
-    display:flex;
-    flex-direction:column;
+
+
+.yellow{
+
+border-left:10px solid #ffd600;
+
 }
 
-/* ✅ FIX ระยะบรรทัดให้เท่ากันทุกช่อง */
-.list div{
-    margin-bottom:12px;
-    color:#333;
-    font-size:18px;
-    line-height:1.9;
+
+
+.red{
+
+border-left:10px solid #d50000;
+
 }
 
-/* ปุ่มย้อนกลับ */
+
+
+.info{
+
+font-size:18px;
+
+line-height:1.9;
+
+}
+
+
+
+.btn{
+
+display:inline-block;
+
+margin-top:15px;
+
+padding:12px 25px;
+
+background:#e60000;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+}
+
+
+.btn:hover{
+
+background:#990000;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:30px;
+
+}
+
 .back-btn{
-    position:fixed;
-    right:40px;
-    bottom:40px;
 
-    width:75px;
-    height:75px;
+position:fixed;
 
-    border-radius:50%;
+top:25px;
 
-    background:#c40000;
+left:25px;
 
-    color:white;
-    text-decoration:none;
+background:#101923;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+border:1px solid #243444;
 
-    font-size:38px;
-    font-weight:bold;
+color:white;
 
-    box-shadow:0 10px 25px rgba(196,0,0,.3);
-    transition:.3s;
+padding:10px 20px;
+
+border-radius:12px;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:.3s;
+
+z-index:10;
+
 }
+
 
 .back-btn:hover{
-    background:#990000;
-    transform:scale(1.1);
-}
 
-@media(max-width:1200px){
-    .container{
-        flex-direction:column;
-        align-items:center;
-    }
+background:#2196ff;
 
-    .card{
-        width:90%;
-        height:auto;
-    }
+transform:translateX(-5px);
 
-    .title{
-        font-size:38px;
-    }
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<h1 class="title">❄️ ความรู้เกี่ยวกับการเก็บรักษาเนื้อสัตว์</h1>
 
 <div class="container">
 
-    <!-- การ์ด 1 -->
-    <div class="card">
 
-        <h2>🧊 การเก็บรักษาในตู้เย็น</h2>
+<div class="title">
 
-        <div class="red-title">อุณหภูมิที่เหมาะสม</div>
-        <div class="list">
-            <div>🌡️ ควรเก็บที่ 0–4 องศาเซลเซียส</div>
-            <div>🦠 ช่วยชะลอการเจริญเติบโตของจุลินทรีย์</div>
-            <div>📦 ควรเก็บในภาชนะที่ปิดสนิท</div>
-            <div>🥗 แยกจากอาหารพร้อมรับประทาน</div>
-        </div>
+<h1>🥩 Meat Guard</h1>
 
-        <div class="red-title">ระยะเวลาการเก็บ</div>
-        <div class="list">
-            <div>🐷 เนื้อหมู : 2–3 วัน</div>
-            <div>🐮 เนื้อวัว : 3–5 วัน</div>
-            <div>🐔 เนื้อไก่ : 1–2 วัน</div>
-        </div>
-
-        <div class="red-title">ข้อควรระวัง</div>
-        <div class="list">
-            <div>⚠️ ไม่ควรวางไว้นอกตู้เย็นเป็นเวลานาน</div>
-            <div>🚪 หลีกเลี่ยงการเปิด-ปิดตู้เย็นบ่อย</div>
-        </div>
-
-    </div>
-
-    <!-- การ์ด 2 -->
-    <div class="card">
-
-        <h2>❄️ การเก็บรักษาในช่องแช่แข็ง</h2>
-
-        <div class="red-title">ประโยชน์</div>
-        <div class="list">
-            <div>📅 ช่วยยืดอายุการเก็บรักษา</div>
-            <div>🛡️ ลดการเสื่อมสภาพของเนื้อสัตว์</div>
-        </div>
-
-        <div class="red-title">วิธีการเก็บ</div>
-        <div class="list">
-            <div>🔪 แบ่งเนื้อสัตว์เป็นส่วนก่อนแช่แข็ง</div>
-            <div>📦 ใช้ถุงหรือภาชนะสำหรับแช่แข็ง</div>
-            <div>💨 ไล่อากาศออกให้มากที่สุด</div>
-        </div>
-
-        <div class="red-title">ข้อควรระวัง</div>
-        <div class="list">
-            <div>🚫 ไม่ควรแช่แข็งซ้ำหลังละลายแล้ว</div>
-            <div>📝 ควรติดฉลากวันที่เก็บรักษา</div>
-        </div>
-
-    </div>
-
-    <!-- การ์ด 3 -->
-    <div class="card">
-
-        <h2>⚠️ การสังเกตเนื้อสัตว์ก่อนบริโภค</h2>
-
-        <div class="red-title">สิ่งที่ควรตรวจสอบ</div>
-        <div class="list">
-            <div>🎨 สีของเนื้อสัตว์</div>
-            <div>👃 กลิ่นผิดปกติ</div>
-            <div>🖐️ พื้นผิวลื่นหรือเหนียว</div>
-        </div>
-
-        <div class="red-title">สัญญาณการเสื่อมสภาพ</div>
-        <div class="list">
-            <div>❌ มีกลิ่นเหม็นผิดปกติ</div>
-            <div>❌ สีคล้ำหรือเปลี่ยนสีมาก</div>
-            <div>❌ มีเมือกบนพื้นผิว</div>
-        </div>
-
-        <div class="red-title">คำแนะนำ</div>
-        <div class="list">
-            <div>🚫 ไม่ควรบริโภคหากผิดปกติ</div>
-            <div>✅ ควรใช้ระบบตรวจร่วมกับการสังเกต</div>
-        </div>
-
-    </div>
+<p>
+คำแนะนำการบริโภคจากผลตรวจความสดของเนื้อสัตว์
+</p>
 
 </div>
 
-<a href="javascript:history.back()" class="back-btn">←</a>
+
+
+
+<!-- FRESH -->
+
+<div class="card green">
+
+
+<h2>🟢 สดมาก (FRESH)</h2>
+
+
+<div class="info">
+
+
+ค่าประมาณ:
+
+<br>
+
+NH3 ต่ำกว่า 10 ppm
+
+<br>
+
+H2S ต่ำกว่า 1 ppm
+
+
+<br><br>
+
+
+<b>การเก็บรักษา:</b>
+
+<br>
+
+แช่เย็น 0-4°C
+
+สามารถเก็บได้ประมาณ
+
+<b>2-3 วัน</b>
+
+
+<br><br>
+
+
+<b>เมนูอาหารง่าย ๆ:</b>
+
+<br>
+
+🥩 กะเพราเนื้อ
+
+<br>
+
+🥩 เนื้อผัดน้ำมันหอย
+
+<br>
+
+🍳 ไข่เจียวเนื้อสับ
+
+<br>
+
+🍛 ข้าวผัดเนื้อ
+
+
+<br>
+
+
+<a class="btn"
+target="_blank"
+
+href="https://www.youtube.com/results?search_query=เมนูเนื้อทำง่าย">
+
+▶ ดูคลิปทำอาหาร
+
+</a>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!-- WARNING -->
+
+
+<div class="card yellow">
+
+
+<h2>🟡 ควรรีบใช้ (WARNING)</h2>
+
+
+<div class="info">
+
+
+ค่าประมาณ:
+
+<br>
+
+NH3 10-25 ppm
+
+<br>
+
+H2S 1-5 ppm
+
+
+<br><br>
+
+
+<b>การเก็บรักษา:</b>
+
+<br>
+
+ควรนำไปปรุงอาหารภายใน
+
+<b>24 ชั่วโมง</b>
+
+
+<br><br>
+
+
+<b>เมนูอาหารแนะนำ:</b>
+
+<br>
+
+🔥 เนื้อย่าง
+
+<br>
+
+🍜 ก๋วยเตี๋ยวเนื้อ
+
+<br>
+
+🍚 ข้าวผัดเนื้อ
+
+<br>
+
+🌶 ผัดพริกแกงเนื้อ
+
+
+<br>
+
+
+<a class="btn"
+
+target="_blank"
+
+href="https://www.youtube.com/results?search_query=วิธีทำเนื้อย่างง่ายๆ">
+
+▶ ดูคลิปทำอาหาร
+
+</a>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- SPOILED -->
+
+
+<div class="card red">
+
+
+<h2>🔴 ไม่ควรบริโภค (SPOILED)</h2>
+
+
+<div class="info">
+
+
+ค่าประมาณ:
+
+<br>
+
+NH3 มากกว่า 25 ppm
+
+<br>
+
+H2S มากกว่า 5 ppm
+
+
+<br><br>
+
+
+<b>คำแนะนำ:</b>
+
+<br>
+
+ไม่แนะนำให้นำไปทำอาหาร
+
+<br>
+
+ควรคัดแยกและทิ้ง
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="footer">
+
+© 2026 Meat Guard | Smart Meat Freshness Detection System
+
+</div>
+
+
+</div>
+
 
 </body>
+<button class="back-btn" onclick="history.back()">
+
+← ย้อนกลับ
+
+</button>
 </html>
