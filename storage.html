@@ -2,258 +2,108 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ความรู้เกี่ยวกับการเก็บรักษาเนื้อสัตว์ | MEAT GUARD</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c40000">
+<title>การเก็บรักษาเนื้อสัตว์ | MEAT GUARD</title>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="assets/css/app.css">
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Kanit',sans-serif;
-}
-
-body{
-    min-height:100vh;
-    padding:40px;
-
-    background:
-    linear-gradient(
-        rgba(0,0,0,.55),
-        rgba(0,0,0,.55)
-    ),
-    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-}
-
-.title{
-    text-align:center;
-    color:white;
-    font-size:48px;
-    font-weight:800;
-    margin-bottom:40px;
-}
-
-.container{
-    max-width:1800px;
-    margin:auto;
-
-    display:flex;
-    gap:30px;
-    justify-content:center;
-    align-items:stretch;
-    flex-wrap:wrap;
-}
-
-.card{
-    width:420px;
-    height:750px;
-
-    background:rgba(255,255,255,.97);
-
-    border-radius:25px;
-
-    padding:30px;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
-
-    transition:.3s;
-
-    display:flex;
-    flex-direction:column;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-}
-
-.card h2{
-    text-align:center;
-    font-size:30px;
-    font-weight:800;
-    margin-bottom:20px;
-}
-
-.red-title{
-    color:#c40000;
-    font-size:23px;
-    font-weight:700;
-    margin-top:15px;
-    margin-bottom:10px;
-    min-height:40px;
-}
-
-.list{
-    flex:1;
-}
-
-.list div{
-    margin-bottom:12px;
-    color:#333;
-    font-size:18px;
-    line-height:1.9;
-}
-
-/* ปุ่มย้อนกลับ */
-
-.back-btn{
-    position:fixed;
-    right:40px;
-    bottom:40px;
-
-    width:75px;
-    height:75px;
-
-    border-radius:50%;
-
-    background:#c40000;
-
-    color:white;
-
-    text-decoration:none;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:38px;
-    font-weight:bold;
-
-    box-shadow:0 10px 25px rgba(196,0,0,.3);
-
-    transition:.3s;
-}
-
-.back-btn:hover{
-    background:#990000;
-    transform:scale(1.1);
-}
-
-@media(max-width:1200px){
-
-    .container{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .card{
-        width:90%;
-        max-width:600px;
-        height:auto;
-    }
-
-    .title{
-        font-size:38px;
-    }
-}
-
+body.kb{--photo:url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80');}
+.kb-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  padding:0 clamp(16px,4vw,28px) clamp(40px,8vw,80px);}
+@media(max-width:980px){.kb-grid{grid-template-columns:1fr;max-width:620px;}}
+.kb-card{background:rgba(255,255,255,.98);border-radius:var(--radius-lg);padding:clamp(22px,3vw,30px);
+  box-shadow:var(--shadow-lg);display:flex;flex-direction:column;transition:transform .25s var(--ease);}
+.kb-card:hover{transform:translateY(-6px);}
+.kb-card .top{text-align:center;margin-bottom:8px;}
+.kb-card .top .ic{font-size:2.6rem;}
+.kb-card .top h2{font-size:clamp(1.25rem,2.5vw,1.5rem);margin-top:8px;}
+.kb-sec{margin-top:16px;}
+.kb-sec h4{color:var(--primary-600);font-size:1.02rem;font-weight:700;margin-bottom:10px;
+  padding-bottom:6px;border-bottom:2px solid var(--primary-100);}
+.kb-sec ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.kb-sec li{display:flex;gap:10px;color:var(--ink-soft);font-size:.98rem;line-height:1.5;}
+.kb-sec li .e{flex:0 0 auto;}
+.ref{margin-top:auto;padding-top:16px;font-size:.8rem;color:var(--muted);font-style:italic;}
 </style>
 </head>
-<body>
+<body class="kb photo-bg" data-loader-text="กำลังโหลดความรู้…">
 
-<h1 class="title">
-❄️ ความรู้เกี่ยวกับการเก็บรักษาเนื้อสัตว์
-</h1>
+<a href="category.html" class="back-chip">← หมวดหมู่</a>
 
-<div class="container">
+<div class="page-head reveal" data-d="1">
+  <h1>❄️ การเก็บรักษาเนื้อสัตว์</h1>
+  <p>แนวทางการเก็บรักษาเพื่อความสดและปลอดภัย</p>
+</div>
 
-    <!-- การ์ด 1 -->
+<div class="kb-grid">
 
-    <div class="card">
+  <article class="kb-card reveal" data-d="2">
+    <div class="top"><div class="ic">🧊</div><h2>การเก็บในตู้เย็น</h2></div>
+    <div class="kb-sec"><h4>อุณหภูมิที่เหมาะสม</h4><ul>
+      <li><span class="e">🌡️</span>ควรเก็บที่ 0–4 องศาเซลเซียส</li>
+      <li><span class="e">🦠</span>ช่วยชะลอการเจริญเติบโตของจุลินทรีย์</li>
+      <li><span class="e">📦</span>เก็บในภาชนะที่ปิดสนิท</li>
+      <li><span class="e">🥗</span>แยกจากอาหารพร้อมรับประทาน</li>
+    </ul></div>
+    <div class="kb-sec"><h4>ระยะเวลาการเก็บ</h4><ul>
+      <li><span class="e">🐷</span>เนื้อหมู : 2–3 วัน</li>
+      <li><span class="e">🐮</span>เนื้อวัว : 3–5 วัน</li>
+      <li><span class="e">🐔</span>เนื้อไก่ : 1–2 วัน</li>
+    </ul></div>
+    <div class="kb-sec"><h4>ข้อควรระวัง</h4><ul>
+      <li><span class="e">⚠️</span>ไม่ควรวางไว้นอกตู้เย็นเป็นเวลานาน</li>
+      <li><span class="e">🚪</span>หลีกเลี่ยงการเปิด-ปิดตู้เย็นบ่อยเกินไป</li>
+    </ul></div>
+    <div class="ref">อ้างอิงโดย สำนักงานคณะกรรมการอาหารและยา (อย.)</div>
+  </article>
 
-        <h2>🧊 การเก็บรักษาในตู้เย็น</h2>
+  <article class="kb-card reveal" data-d="3">
+    <div class="top"><div class="ic">❄️</div><h2>การแช่แข็ง</h2></div>
+    <div class="kb-sec"><h4>ประโยชน์</h4><ul>
+      <li><span class="e">📅</span>ช่วยยืดอายุการเก็บรักษา</li>
+      <li><span class="e">🛡️</span>ลดการเสื่อมสภาพของเนื้อสัตว์</li>
+    </ul></div>
+    <div class="kb-sec"><h4>วิธีการเก็บ</h4><ul>
+      <li><span class="e">🔪</span>แบ่งเนื้อสัตว์เป็นส่วนก่อนแช่แข็ง</li>
+      <li><span class="e">📦</span>ใช้ถุงหรือภาชนะสำหรับแช่แข็ง</li>
+      <li><span class="e">💨</span>ไล่อากาศออกจากบรรจุภัณฑ์ให้มากที่สุด</li>
+    </ul></div>
+    <div class="kb-sec"><h4>ข้อควรระวัง</h4><ul>
+      <li><span class="e">🚫</span>ไม่ควรแช่แข็งซ้ำหลังละลายแล้ว</li>
+      <li><span class="e">📝</span>ควรติดฉลากวันที่เก็บรักษา</li>
+    </ul></div>
+    <div class="ref">อ้างอิงโดย สำนักงานคณะกรรมการอาหารและยา (อย.)</div>
+  </article>
 
-        <div class="red-title">อุณหภูมิที่เหมาะสม</div>
-
-        <div class="list">
-            <div>🌡️ ควรเก็บที่ 0–4 องศาเซลเซียส</div>
-            <div>🦠 ช่วยชะลอการเจริญเติบโตของจุลินทรีย์</div>
-            <div>📦 ควรเก็บในภาชนะที่ปิดสนิท</div>
-            <div>🥗 แยกจากอาหารพร้อมรับประทาน</div>
-
-            <div class="red-title">ระยะเวลาการเก็บ</div>
-
-            <div>🐷 เนื้อหมู : 2–3 วัน</div>
-            <div>🐮 เนื้อวัว : 3–5 วัน</div>
-            <div>🐔 เนื้อไก่ : 1–2 วัน</div>
-
-            <div class="red-title">ข้อควรระวัง</div>
-
-            <div>⚠️ ไม่ควรวางไว้นอกตู้เย็นเป็นเวลานาน</div>
-            <div>🚪 หลีกเลี่ยงการเปิด-ปิดตู้เย็นบ่อยเกินไป</div>
-            <div>อ้างอิงโดย สำนักงานคณะกรรมการอาหารและยา (อย.)</div>
-        </div>
-
-    </div>
-
-    <!-- การ์ด 2 -->
-
-    <div class="card">
-
-        <h2>❄️ การเก็บรักษาในช่องแช่แข็ง</h2>
-
-        <div class="red-title">ประโยชน์</div>
-
-        <div class="list">
-            <div>📅 ช่วยยืดอายุการเก็บรักษา</div>
-            <div>🛡️ ลดการเสื่อมสภาพของเนื้อสัตว์</div>
-
-            <div class="red-title">วิธีการเก็บ</div>
-
-            <div>🔪 แบ่งเนื้อสัตว์เป็นส่วนก่อนแช่แข็ง</div>
-            <div>📦 ใช้ถุงหรือภาชนะสำหรับแช่แข็ง</div>
-            <div>💨 ไล่อากาศออกจากบรรจุภัณฑ์ให้มากที่สุด</div>
-
-            <div class="red-title">ข้อควรระวัง</div>
-
-            <div>🚫 ไม่ควรแช่แข็งซ้ำหลังละลายแล้ว</div>
-            <div>📝 ควรติดฉลากวันที่เก็บรักษา</div>
-            <div>อ้างอิงโดย สำนักงานคณะกรรมการอาหารและยา (อย.)</div>
-        </div>
-
-    </div>
-
-    <!-- การ์ด 3 -->
-
-    <div class="card">
-
-        <h2>⚠️ การสังเกตเนื้อสัตว์ก่อนบริโภค</h2>
-
-        <div class="red-title">สิ่งที่ควรตรวจสอบ</div>
-
-        <div class="list">
-            <div>🎨 สีของเนื้อสัตว์</div>
-            <div>👃 กลิ่นผิดปกติ</div>
-            <div>🖐️ พื้นผิวที่ลื่นหรือเหนียว</div>
-
-            <div class="red-title">สัญญาณการเสื่อมสภาพ</div>
-
-            <div>❌ มีกลิ่นเหม็นผิดปกติ</div>
-            <div>❌ สีคล้ำหรือเปลี่ยนสีมาก</div>
-            <div>❌ มีเมือกบนพื้นผิว</div>
-
-            <div class="red-title">คำแนะนำ</div>
-
-            <div>🚫 หากพบความผิดปกติ ไม่ควรนำมาบริโภค</div>
-            <div>✅ ควรใช้ผลการตรวจจากระบบร่วมกับการสังเกตด้วยตนเอง</div>
-            <div>อ้างอิงโดย สำนักงานคณะกรรมการอาหารและยา (อย.)</div>
-        </div>
-
-    </div>
+  <article class="kb-card reveal" data-d="4">
+    <div class="top"><div class="ic">⚠️</div><h2>สังเกตก่อนบริโภค</h2></div>
+    <div class="kb-sec"><h4>สิ่งที่ควรตรวจสอบ</h4><ul>
+      <li><span class="e">🎨</span>สีของเนื้อสัตว์</li>
+      <li><span class="e">👃</span>กลิ่นผิดปกติ</li>
+      <li><span class="e">🖐️</span>พื้นผิวที่ลื่นหรือเหนียว</li>
+    </ul></div>
+    <div class="kb-sec"><h4>สัญญาณการเสื่อมสภาพ</h4><ul>
+      <li><span class="e">❌</span>มีกลิ่นเหม็นผิดปกติ</li>
+      <li><span class="e">❌</span>สีคล้ำหรือเปลี่ยนสีมาก</li>
+      <li><span class="e">❌</span>มีเมือกบนพื้นผิว</li>
+    </ul></div>
+    <div class="kb-sec"><h4>คำแนะนำ</h4><ul>
+      <li><span class="e">🚫</span>หากพบความผิดปกติ ไม่ควรนำมาบริโภค</li>
+      <li><span class="e">✅</span>ใช้ผลตรวจจากระบบร่วมกับการสังเกตด้วยตนเอง</li>
+    </ul></div>
+    <div class="ref">อ้างอิงโดย สำนักงานคณะกรรมการอาหารและยา (อย.)</div>
+  </article>
 
 </div>
 
-<!-- ปุ่มย้อนกลับ -->
+<a href="category.html" class="fab-back" id="fab">←</a>
 
-<a href="javascript:history.back()" class="back-btn">
-←
-</a>
-
+<script src="assets/js/app.js"></script>
+<script>
+const MG=window.MeatGuard;MG.guard();
+document.getElementById("fab").addEventListener("click",(e)=>{e.preventDefault();MG.go("category.html");});
+document.querySelector(".back-chip").addEventListener("click",(e)=>{e.preventDefault();MG.go("category.html");});
+</script>
 </body>
 </html>

@@ -2,447 +2,198 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meat Guard Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c40000">
+<title>เข้าสู่ระบบ | MEAT GUARD</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Kanit',sans-serif;
-}
+.auth{display:grid;grid-template-columns:1.1fr .9fr;min-height:100vh;min-height:100dvh;}
 
-body{
-    min-height:100vh;
-    display:flex;
-    background:#f5f5f5;
-}
+/* hero side */
+.hero{position:relative;color:#fff;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(28px,5vw,72px);overflow:hidden;
+  background:linear-gradient(135deg,rgba(120,0,0,.55),rgba(8,10,14,.78)),
+    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80');
+  background-size:cover;background-position:center;}
+.hero::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 50% at 20% 20%,rgba(255,40,40,.22),transparent 70%);}
+.hero-inner{position:relative;z-index:1;max-width:560px;}
+.hero .logo{display:flex;align-items:center;gap:.5em;font-size:clamp(2.2rem,6vw,4.2rem);
+  font-weight:800;letter-spacing:.04em;line-height:1;}
+.hero .logo .meat{color:#ff3030;text-shadow:0 0 26px rgba(255,0,0,.6);}
+.hero .tag{margin-top:14px;letter-spacing:.22em;font-size:clamp(.7rem,1.6vw,.95rem);
+  opacity:.85;font-weight:500;}
+.hero h2{margin-top:clamp(26px,5vw,48px);font-size:clamp(1.4rem,3vw,2.1rem);font-weight:700;line-height:1.3;}
+.hero p.lead{margin-top:14px;line-height:1.9;opacity:.92;font-weight:300;max-width:46ch;}
+.hero .feats{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;}
+.hero .feats span{display:inline-flex;align-items:center;gap:.5em;padding:.5em 1em;border-radius:99px;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);
+  font-size:.86rem;}
 
-/* =========================
-   LEFT PANEL
-========================= */
-.left-panel{
-    width:55%;
-    position:relative;
+/* form side */
+.panel{background:var(--surface);display:flex;align-items:center;justify-content:center;
+  padding:clamp(24px,4vw,48px);overflow-y:auto;}
+.auth-card{width:100%;max-width:440px;}
+.welcome{text-align:center;margin-bottom:26px;}
+.welcome h2{color:var(--primary-600);font-size:clamp(1.5rem,4vw,2rem);font-weight:700;}
+.welcome p{color:var(--muted);margin-top:6px;}
 
-    background:
-    linear-gradient(
-    rgba(0,0,0,.60),
-    rgba(0,0,0,.60)),
-    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');
+.reg-head{text-align:center;margin-bottom:14px;}
+.reg-head h3{font-weight:600;}
+.reg-head p{color:var(--muted);font-size:.9rem;}
+.reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.reg-btn{display:flex;align-items:center;justify-content:center;gap:.5em;color:#fff;
+  padding:13px;border-radius:var(--radius-sm);font-weight:600;font-size:.95rem;
+  transition:transform .18s var(--ease),box-shadow .25s var(--ease),filter .2s;box-shadow:var(--shadow-sm);}
+.reg-btn:hover{transform:translateY(-3px);box-shadow:var(--shadow);filter:brightness(1.05);}
+.reg-btn.email{background:#d93025;}
+.reg-btn.google{background:#fff;color:#3c4043;border:1.5px solid #dadce0;}
+.reg-btn.google:hover{background:#f8f9fa;}
+.reg-btn svg{width:18px;height:18px;}
 
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-}
-
-.brand{
-    text-align:center;
-}
-
-.brand h1{
-    font-size:95px;
-    font-weight:800;
-    letter-spacing:4px;
-}
-
-.meat{
-    color:#ff1a1a;
-    text-shadow:
-    0 0 15px rgba(255,0,0,.8),
-    0 0 40px rgba(255,0,0,.6);
-}
-
-.guard{
-    color:#ffffff;
-    text-shadow:
-    0 0 15px rgba(255,255,255,.6);
-}
-
-.brand p{
-    color:white;
-    margin-top:15px;
-    font-size:22px;
-    letter-spacing:2px;
-}
-
-.smart-box{
-    position:absolute;
-    left:40px;
-    bottom:40px;
-    color:white;
-    max-width:550px;
-}
-
-.smart-box h2{
-    font-size:32px;
-    margin-bottom:12px;
-    font-weight:700;
-}
-
-.smart-box p{
-    line-height:1.8;
-    font-size:16px;
-    opacity:.95;
-}
-
-/* =========================
-   RIGHT PANEL
-========================= */
-.right-panel{
-    width:45%;
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:40px;
-}
-
-.login-container{
-    width:100%;
-    max-width:450px;
-}
-
-.welcome{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.welcome h2{
-    color:#c40000;
-    font-size:36px;
-    margin-bottom:8px;
-}
-
-.welcome p{
-    color:#666;
-}
-
-/* Form */
-
-.form-group{
-    margin-bottom:18px;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:500;
-}
-
-.form-group input{
-    width:100%;
-    padding:14px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    font-size:15px;
-    transition:.3s;
-}
-
-.form-group input:focus{
-    outline:none;
-    border-color:#c40000;
-    box-shadow:0 0 10px rgba(196,0,0,.2);
-}
-
-.login-btn{
-    width:100%;
-    border:none;
-    background:#c40000;
-    color:white;
-    padding:15px;
-    border-radius:12px;
-    font-size:17px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.login-btn:hover{
-    background:#960000;
-}
-
-.divider{
-    margin:30px 0;
-    text-align:center;
-    color:#888;
-    position:relative;
-}
-
-.divider::before,
-.divider::after{
-    content:'';
-    position:absolute;
-    top:50%;
-    width:40%;
-    height:1px;
-    background:#ddd;
-}
-
-.divider::before{
-    left:0;
-}
-
-.divider::after{
-    right:0;
-}
-
-/* Register */
-
-.register-title{
-    text-align:center;
-    margin-bottom:15px;
-}
-
-.register-title h3{
-    margin-bottom:5px;
-}
-
-.register-grid{
-    display:grid;
-    gap:12px;
-}
-
-.register-btn{
-    text-decoration:none;
-    color:white;
-    text-align:center;
-    padding:14px;
-    border-radius:12px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.register-btn:hover{
-    transform:translateY(-3px);
-}
-
-.email{
-    background:#d93025;
-}
-
-.facebook{
-    background:#1877f2;
-}
-
-.line{
-    background:#06c755;
-}
-
-.phone{
-    background:#555;
-}
-
-/* Footer */
-
-.footer{
-    margin-top:25px;
-    text-align:center;
-    font-size:13px;
-    color:#999;
-}
-
-/* Responsive */
+/* Google sign-in button */
+.btn-google{background:#fff;color:#3c4043;border:1.5px solid #dadce0;box-shadow:var(--shadow-sm);margin-top:12px;}
+.btn-google:hover{background:#f8f9fa;border-color:#cfd3d8;transform:translateY(-2px);box-shadow:var(--shadow);}
+.btn-google svg{width:20px;height:20px;}
+.foot{margin-top:24px;text-align:center;font-size:.8rem;color:#9aa1ab;}
 
 @media(max-width:900px){
-
-    body{
-        flex-direction:column;
-    }
-
-    .left-panel,
-    .right-panel{
-        width:100%;
-    }
-
-    .left-panel{
-        min-height:45vh;
-    }
-
-    .brand h1{
-        font-size:60px;
-    }
-
-    .smart-box{
-        left:20px;
-        right:20px;
-        bottom:20px;
-    }
-
-    .smart-box h2{
-        font-size:24px;
-    }
+  .auth{grid-template-columns:1fr;}
+  .hero{min-height:38vh;padding:clamp(26px,7vw,40px);}
+  .hero .feats{display:none;}
+  .panel{padding:26px 20px 40px;}
+}
+@media(max-width:420px){
+  .reg-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
+<body data-loader-text="กำลังเตรียมระบบ…">
 
-<body>
+<div class="auth">
 
-<!-- LEFT SIDE -->
-<div class="left-panel">
-
-    <div class="brand">
-        <h1>
-            <span class="meat">MEAT</span>
-            <span class="guard">GUARD</span>
-        </h1>
-
-        <p>SMART MEAT FRESHNESS DETECTION SYSTEM</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="logo reveal" data-d="1"><span class="meat">MEAT</span><span class="guard">GUARD</span></div>
+      <div class="tag reveal" data-d="1">SMART MEAT FRESHNESS DETECTION SYSTEM</div>
+      <h2 class="reveal" data-d="2">กล่องตรวจความสดเนื้อสัตว์อัจฉริยะ</h2>
+      <p class="lead reveal" data-d="3">
+        ตรวจสอบความสดของเนื้อสัตว์ด้วยเซนเซอร์อัจฉริยะแบบเรียลไทม์
+        ยกระดับมาตรฐานความปลอดภัยทางอาหาร สร้างความมั่นใจให้ผู้บริโภค ร้านค้า และผู้ประกอบการ
+      </p>
+      <div class="feats reveal" data-d="4">
+        <span>🌡️ วัดอุณหภูมิ &amp; ความชื้น</span>
+        <span>🧪 ตรวจก๊าซ NH₃ / H₂S</span>
+        <span>📊 รายงานเรียลไทม์</span>
+      </div>
     </div>
+  </section>
 
-    <div class="smart-box">
-        <h2>กล่องตรวจความสดเนื้อสัตว์อัจฉริยะ</h2>
+  <!-- FORM -->
+  <section class="panel">
+    <div class="auth-card reveal" data-d="2">
 
-        <p>
-            ระบบตรวจสอบความสดของเนื้อสัตว์ด้วยเทคโนโลยีอัจฉริยะ
-            เพื่อยกระดับมาตรฐานความปลอดภัยทางอาหาร ช่วยเพิ่มความมั่นใจ
-            ให้แก่ผู้บริโภค ร้านค้า ผู้ประกอบการ และภาคอุตสาหกรรมอาหาร
-            ด้วยการวิเคราะห์คุณภาพเนื้อสัตว์อย่างแม่นยำและรวดเร็ว
-        </p>
+      <div class="welcome">
+        <h2>ยินดีต้อนรับ</h2>
+        <p>เข้าสู่ระบบเพื่อเริ่มใช้งาน Meat Guard</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">อีเมล</label>
+          <div class="control">
+            <span class="ic">📧</span>
+            <input class="input" type="email" id="email" placeholder="example@email.com" autocomplete="email" required>
+          </div>
+          <span class="field-error"></span>
+        </div>
+
+        <div class="field">
+          <label for="password">รหัสผ่าน</label>
+          <div class="control">
+            <span class="ic">🔒</span>
+            <input class="input" type="password" id="password" placeholder="กรอกรหัสผ่าน" autocomplete="current-password" required>
+            <button type="button" class="toggle-pass" data-toggle-pass="password" aria-label="แสดงรหัสผ่าน">👁️</button>
+          </div>
+          <span class="field-error"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg">เข้าสู่ระบบ</button>
+      </form>
+
+      <button type="button" id="googleBtn" class="btn btn-google btn-block btn-lg">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        เข้าสู่ระบบด้วย Google
+      </button>
+
+      <div class="divider">ยังไม่มีบัญชี? สมัครสมาชิก</div>
+
+      <div class="reg-grid">
+        <a href="register-email.html" class="reg-btn email">📧 สมัครด้วยอีเมล</a>
+        <a href="register-google.html" class="reg-btn google">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          สมัครด้วย Google
+        </a>
+      </div>
+
+      <div class="foot">© 2026 Meat Guard · Smart Meat Freshness Detection System</div>
     </div>
+  </section>
 
 </div>
 
-<!-- RIGHT SIDE -->
-<div class="right-panel">
-
-    <div class="login-container">
-
-        <div class="welcome">
-            <h2>ยินดีต้อนรับผู้ใช้งาน</h2>
-            <p>เข้าสู่ระบบเพื่อเริ่มใช้งาน Meat Guard</p>
-        </div>
-
-        <!-- LOGIN -->
-        <form onsubmit="return checkLogin()" action="category.html">
-
-    <div class="form-group">
-        <label>อีเมล</label>
-
-        <input 
-        type="email" 
-        id="email"
-        placeholder="กรอกอีเมล"
-        required>
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>รหัสผ่าน</label>
-
-        <input 
-        type="password"
-        id="password"
-        placeholder="กรอกรหัสผ่าน"
-        required>
-
-    </div>
-
-
-    <button type="submit" class="login-btn">
-
-        เข้าสู่ระบบ
-
-    </button>
-
-
-</form>
-
-        <div class="divider">หรือ</div>
-
-        <!-- REGISTER -->
-        <div class="register-title">
-            <h3>สมัครสมาชิกใหม่</h3>
-            <p>เลือกช่องทางการลงทะเบียน</p>
-        </div>
-
-        <div class="register-grid">
-
-            <a href="register-email.html" class="register-btn email">
-                สมัครด้วยอีเมล
-            </a>
-
-            <a href="register-facebook.html" class="register-btn facebook">
-                สมัครด้วย Facebook
-            </a>
-
-            <a href="register-line.html" class="register-btn line">
-                สมัครด้วย LINE
-            </a>
-
-            <a href="register-phone.html" class="register-btn phone">
-                สมัครด้วยเบอร์โทรศัพท์
-            </a>
-
-        </div>
-
-        <div class="footer">
-            © 2026 Meat Guard | Smart Meat Freshness Detection System
-        </div>
-
-    </div>
-
-</div>
+<script src="assets/js/app.js"></script>
 <script>
+const MG = window.MeatGuard;
 
-function checkLogin(){
-
-
-    let email = document.getElementById("email").value;
-
-    let password = document.getElementById("password").value;
-
-
-
-    // ตรวจรูปแบบอีเมล
-
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-
-    if(!emailPattern.test(email)){
-
-
-        alert("กรุณากรอกอีเมลให้ถูกต้อง เช่น example@gmail.com");
-
-
-        return false;
-
-
-    }
-
-
-
-    if(password.length < 1){
-
-
-        alert("กรุณากรอกรหัสผ่าน");
-
-
-        return false;
-
-
-    }
-
-
-
-    return true;
-
-
+// if a guarded page bounced us here, explain why
+if (sessionStorage.getItem("mg_redirect_msg")) {
+  sessionStorage.removeItem("mg_redirect_msg");
+  window.addEventListener("load", () => MG.toast("กรุณาเข้าสู่ระบบก่อนใช้งาน", "warn"));
 }
 
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const emailEl = document.getElementById("email");
+  const passEl  = document.getElementById("password");
+  const email = emailEl.value.trim();
+  const pass  = passEl.value;
+  let ok = true;
 
+  if (!MG.isEmail(email)) { MG.setError(emailEl, "กรุณากรอกอีเมลให้ถูกต้อง เช่น example@gmail.com"); ok = false; }
+  else MG.setError(emailEl, "");
+
+  if (pass.length < 1) { MG.setError(passEl, "กรุณากรอกรหัสผ่าน"); ok = false; }
+  else MG.setError(passEl, "");
+
+  if (!ok) return;
+
+  // demo auth — accept any valid credentials
+  MG.Auth.set({ email, name: email.split("@")[0], method: "email", at: Date.now() });
+  MG.toast("เข้าสู่ระบบสำเร็จ", "ok");
+  MG.go("category.html", "กำลังเข้าสู่ระบบ…");
+});
+
+// Google sign-in → Google account page
+document.getElementById("googleBtn").addEventListener("click", function () {
+  MG.go("register-google.html", "กำลังเชื่อมต่อ Google…");
+});
 </script>
 </body>
 </html>

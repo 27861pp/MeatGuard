@@ -2,205 +2,98 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c40000">
 <title>หลักการทำงานของนวัตกรรม | MEAT GUARD</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="assets/css/app.css">
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Kanit',sans-serif;
-}
-
-body{
-    min-height:100vh;
-    padding:40px;
-
-    background:
-    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1920&q=80');
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-}
-
-.title{
-    text-align:center;
-    color:white;
-    font-size:48px;
-    font-weight:800;
-    margin-bottom:40px;
-}
-
-.container{
-    max-width:1800px;
-    margin:auto;
-
-    display:flex;
-    gap:30px;
-    justify-content:center;
-    align-items:stretch;
-    flex-wrap:wrap;
-}
-
-.card{
-    width:420px;
-    height:900px;
-
-    background:rgba(255,255,255,.97);
-    border-radius:25px;
-    padding:30px;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
-
-    display:flex;
-    flex-direction:column;
-}
-
-.card h2{
-    text-align:center;
-    font-size:30px;
-    font-weight:800;
-    margin-bottom:20px;
-}
-
-.red-title{
-    color:#c40000;
-    font-size:22px;
-    font-weight:700;
-    margin-top:15px;
-    margin-bottom:10px;
-}
-
-.list{
-    flex:1;
-}
-
-.list div{
-    margin-bottom:12px;
-    font-size:18px;
-    line-height:1.9;
-    color:#333;
-}
-
-/* ปุ่มย้อนกลับ */
-.back-btn{
-    position:fixed;
-    right:40px;
-    bottom:40px;
-
-    width:75px;
-    height:75px;
-
-    border-radius:50%;
-    background:#c40000;
-
-    color:white;
-    text-decoration:none;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:38px;
-    font-weight:bold;
-
-    box-shadow:0 10px 25px rgba(196,0,0,.3);
-    transition:.3s;
-}
-
-.back-btn:hover{
-    background:#990000;
-    transform:scale(1.1);
-}
-
+body.kb{--photo:url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1600&q=80');}
+.kb-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  padding:0 clamp(16px,4vw,28px) clamp(40px,8vw,80px);}
+@media(max-width:980px){.kb-grid{grid-template-columns:1fr;max-width:640px;}}
+.kb-card{background:rgba(255,255,255,.98);border-radius:var(--radius-lg);padding:clamp(22px,3vw,30px);
+  box-shadow:var(--shadow-lg);display:flex;flex-direction:column;transition:transform .25s var(--ease);}
+.kb-card:hover{transform:translateY(-6px);}
+.kb-card .top{text-align:center;margin-bottom:6px;}
+.kb-card .top .ic{font-size:2.6rem;}
+.kb-card .top h2{font-size:clamp(1.2rem,2.5vw,1.5rem);margin-top:8px;}
+.kb-sec{margin-top:16px;}
+.kb-sec h4{color:var(--primary-600);font-size:1.02rem;font-weight:700;margin-bottom:10px;
+  padding-bottom:6px;border-bottom:2px solid var(--primary-100);}
+.kb-sec ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.kb-sec li{display:flex;gap:10px;color:var(--ink-soft);font-size:.96rem;line-height:1.55;}
+.kb-sec li .e{flex:0 0 auto;}
 </style>
 </head>
+<body class="kb photo-bg" data-loader-text="กำลังโหลดหลักการทำงาน…">
 
-<body>
+<a href="category.html" class="back-chip">← หมวดหมู่</a>
 
-<h1 class="title">⚙️ หลักการทำงานของนวัตกรรม MEAT GUARD</h1>
-
-<div class="container">
-
-<!-- กล่อง 1 -->
-<div class="card">
-
-<h2>🔬 หลักการตรวจวัด</h2>
-
-<div class="red-title">ระบบเซนเซอร์ตรวจจับ</div>
-<div class="list">
-<div>📡 เซนเซอร์ตรวจจับก๊าซที่เกิดจากการเสื่อมสภาพของเนื้อสัตว์ เช่น แอมโมเนียและสารระเหยอินทรีย์</div>
-<div>🧪 ตรวจวัดการเปลี่ยนแปลงของค่าความสดแบบเรียลไทม์</div>
-<div>⚡ ส่งข้อมูลเข้าสู่ไมโครคอนโทรลเลอร์เพื่อประมวลผล</div>
-<div>📊 วิเคราะห์ระดับความสดของเนื้อสัตว์อย่างต่อเนื่อง</div>
+<div class="page-head reveal" data-d="1">
+  <h1>⚙️ หลักการทำงานของนวัตกรรม</h1>
+  <p>เบื้องหลังการทำงานของระบบ MEAT GUARD</p>
 </div>
 
-<div class="red-title">การประมวลผลข้อมูล</div>
-<div class="list">
-<div>🧠 ใช้อัลกอริทึมเปรียบเทียบค่าก๊าซกับฐานข้อมูลมาตรฐาน</div>
-<div>📈 ประเมินแนวโน้มการเสื่อมสภาพของเนื้อสัตว์</div>
-<div>⏱️ คำนวณระดับความสดแบบเป็นช่วงเวลา</div>
-<div>🎯 ลดความผิดพลาดจากการประเมินด้วยสายตา</div>
-</div>
+<div class="kb-grid">
 
-</div>
+  <article class="kb-card reveal" data-d="2">
+    <div class="top"><div class="ic">🔬</div><h2>หลักการตรวจวัด</h2></div>
+    <div class="kb-sec"><h4>ระบบเซนเซอร์ตรวจจับ</h4><ul>
+      <li><span class="e">📡</span>ตรวจจับก๊าซจากการเสื่อมสภาพ เช่น แอมโมเนียและสารระเหยอินทรีย์</li>
+      <li><span class="e">🧪</span>วัดการเปลี่ยนแปลงของค่าความสดแบบเรียลไทม์</li>
+      <li><span class="e">⚡</span>ส่งข้อมูลเข้าสู่ไมโครคอนโทรลเลอร์เพื่อประมวลผล</li>
+      <li><span class="e">📊</span>วิเคราะห์ระดับความสดอย่างต่อเนื่อง</li>
+    </ul></div>
+    <div class="kb-sec"><h4>การประมวลผลข้อมูล</h4><ul>
+      <li><span class="e">🧠</span>เปรียบเทียบค่าก๊าซกับฐานข้อมูลมาตรฐาน</li>
+      <li><span class="e">📈</span>ประเมินแนวโน้มการเสื่อมสภาพ</li>
+      <li><span class="e">⏱️</span>คำนวณระดับความสดแบบเป็นช่วงเวลา</li>
+      <li><span class="e">🎯</span>ลดความผิดพลาดจากการประเมินด้วยสายตา</li>
+    </ul></div>
+  </article>
 
-<!-- กล่อง 2 -->
-<div class="card">
+  <article class="kb-card reveal" data-d="3">
+    <div class="top"><div class="ic">📱</div><h2>การแสดงผล &amp; แจ้งเตือน</h2></div>
+    <div class="kb-sec"><h4>การแสดงผลสถานะ</h4><ul>
+      <li><span class="e">🟢</span>สีเขียว = สดใหม่ ปลอดภัยต่อการบริโภค</li>
+      <li><span class="e">🟡</span>สีเหลือง = เริ่มเสื่อมสภาพ ควรรีบใช้งาน</li>
+      <li><span class="e">🔴</span>สีแดง = เน่าเสีย ไม่ปลอดภัย</li>
+      <li><span class="e">📊</span>แสดงผลผ่านหน้าจอหรือแอปพลิเคชัน</li>
+    </ul></div>
+    <div class="kb-sec"><h4>ระบบแจ้งเตือน</h4><ul>
+      <li><span class="e">🔔</span>แจ้งเตือนเมื่อค่าเริ่มเข้าสู่ระดับเสี่ยง</li>
+      <li><span class="e">📲</span>ส่งข้อมูลไปยังผู้ใช้งานแบบเรียลไทม์</li>
+      <li><span class="e">⏰</span>แจ้งระยะเวลาการเก็บรักษาที่เหมาะสม</li>
+      <li><span class="e">🚨</span>เตือนเมื่อพบเนื้อสัตว์ที่ไม่ปลอดภัย</li>
+    </ul></div>
+  </article>
 
-<h2>📱 การแสดงผลและการแจ้งเตือน</h2>
-
-<div class="red-title">การแสดงผลสถานะ</div>
-<div class="list">
-<div>🟢 สีเขียว = เนื้อสดใหม่ ปลอดภัยต่อการบริโภค</div>
-<div>🟡 สีเหลือง = เริ่มเสื่อมสภาพ ควรรีบใช้งาน</div>
-<div>🔴 สีแดง = เน่าเสีย ไม่ปลอดภัยต่อการบริโภค</div>
-<div>📊 แสดงผลผ่านหน้าจอหรือแอปพลิเคชัน</div>
-</div>
-
-<div class="red-title">ระบบแจ้งเตือน</div>
-<div class="list">
-<div>🔔 แจ้งเตือนเมื่อค่าเริ่มเข้าสู่ระดับเสี่ยง</div>
-<div>📲 ส่งข้อมูลไปยังผู้ใช้งานแบบเรียลไทม์</div>
-<div>⏰ แจ้งเตือนระยะเวลาการเก็บรักษาที่เหมาะสม</div>
-<div>🚨 เตือนเมื่อพบเนื้อสัตว์ที่ไม่ปลอดภัย</div>
-</div>
-
-</div>
-
-<!-- กล่อง 3 -->
-<div class="card">
-
-<h2>🛡️ ความปลอดภัยและประโยชน์</h2>
-
-<div class="red-title">ความแม่นยำของระบบ</div>
-<div class="list">
-<div>🎯 ลดความคลาดเคลื่อนจากการประเมินด้วยมนุษย์</div>
-<div>🔬 ใช้ข้อมูลเชิงวิทยาศาสตร์ในการวิเคราะห์</div>
-<div>📊 เพิ่มความน่าเชื่อถือในการตรวจสอบอาหาร</div>
-<div>⚙️ ระบบทำงานอัตโนมัติ ลดการพึ่งพาคน</div>
-</div>
-
-<div class="red-title">ประโยชน์ที่ได้รับ</div>
-<div class="list">
-<div>🥩 ลดการบริโภคเนื้อสัตว์ที่เสื่อมสภาพ</div>
-<div>🏥 ลดความเสี่ยงโรคอาหารเป็นพิษ</div>
-<div>♻️ ลดการสูญเสียอาหารในครัวเรือนและอุตสาหกรรม</div>
-<div>💡 เพิ่มความมั่นใจในการเลือกบริโภคอาหาร</div>
-<div>🌍 สนับสนุนความปลอดภัยทางอาหารระดับสังคม</div>
-</div>
+  <article class="kb-card reveal" data-d="4">
+    <div class="top"><div class="ic">🛡️</div><h2>ความปลอดภัย &amp; ประโยชน์</h2></div>
+    <div class="kb-sec"><h4>ความแม่นยำของระบบ</h4><ul>
+      <li><span class="e">🎯</span>ลดความคลาดเคลื่อนจากการประเมินด้วยมนุษย์</li>
+      <li><span class="e">🔬</span>ใช้ข้อมูลเชิงวิทยาศาสตร์ในการวิเคราะห์</li>
+      <li><span class="e">📊</span>เพิ่มความน่าเชื่อถือในการตรวจสอบอาหาร</li>
+      <li><span class="e">⚙️</span>ทำงานอัตโนมัติ ลดการพึ่งพาคน</li>
+    </ul></div>
+    <div class="kb-sec"><h4>ประโยชน์ที่ได้รับ</h4><ul>
+      <li><span class="e">🥩</span>ลดการบริโภคเนื้อสัตว์ที่เสื่อมสภาพ</li>
+      <li><span class="e">🏥</span>ลดความเสี่ยงโรคอาหารเป็นพิษ</li>
+      <li><span class="e">♻️</span>ลดการสูญเสียอาหารในครัวเรือนและอุตสาหกรรม</li>
+      <li><span class="e">🌍</span>สนับสนุนความปลอดภัยทางอาหารระดับสังคม</li>
+    </ul></div>
+  </article>
 
 </div>
 
-</div>
+<a href="category.html" class="fab-back" id="fab">←</a>
 
-<a href="javascript:history.back()" class="back-btn">←</a>
-
+<script src="assets/js/app.js"></script>
+<script>
+const MG=window.MeatGuard;MG.guard();
+document.getElementById("fab").addEventListener("click",(e)=>{e.preventDefault();MG.go("category.html");});
+document.querySelector(".back-chip").addEventListener("click",(e)=>{e.preventDefault();MG.go("category.html");});
+</script>
 </body>
 </html>

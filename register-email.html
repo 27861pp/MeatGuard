@@ -2,250 +2,120 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>สมัครสมาชิกด้วยอีเมล | Meat Guard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c40000">
+<title>สมัครสมาชิกด้วยอีเมล | MEAT GUARD</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Kanit',sans-serif;
-}
-
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:
-    linear-gradient(
-        rgba(0,0,0,.55),
-        rgba(0,0,0,.55)
-    ),
-    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-}
-
-/* กล่องสมัครสมาชิก */
-
-.register-container{
-    width:100%;
-    max-width:500px;
-    margin:20px;
-}
-
-.register-card{
-    background:rgba(255,255,255,0.96);
-    backdrop-filter:blur(10px);
-    border-radius:25px;
-    padding:40px;
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
-}
-
-/* โลโก้ */
-
-.logo{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.logo h1{
-    font-size:50px;
-    font-weight:800;
-    letter-spacing:2px;
-}
-
-.logo .meat{
-    color:#d90000;
-}
-
-.logo .guard{
-    color:#222;
-}
-
-.logo p{
-    color:#666;
-    margin-top:8px;
-    font-size:15px;
-}
-
-/* หัวข้อ */
-
-.title{
-    text-align:center;
-    margin-bottom:25px;
-}
-
-.title h2{
-    color:#b30000;
-    font-size:30px;
-    margin-bottom:5px;
-}
-
-.title p{
-    color:#666;
-}
-
-/* ฟอร์ม */
-
-.form-group{
-    margin-bottom:18px;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:500;
-    color:#333;
-}
-
-.form-group input{
-    width:100%;
-    padding:14px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    font-size:15px;
-    transition:.3s;
-}
-
-.form-group input:focus{
-    outline:none;
-    border-color:#d90000;
-    box-shadow:0 0 10px rgba(217,0,0,.15);
-}
-
-/* ปุ่ม */
-
-.register-btn{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    background:#d90000;
-    color:white;
-    font-size:17px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.register-btn:hover{
-    background:#a80000;
-}
-
-.footer-text{
-    text-align:center;
-    margin-top:20px;
-    color:#666;
-    font-size:14px;
-}
-
-/* Responsive */
-
-@media(max-width:600px){
-
-    .register-card{
-        padding:25px;
-    }
-
-    .logo h1{
-        font-size:38px;
-    }
-
-    .title h2{
-        font-size:24px;
-    }
-}
-
+body.reg{display:flex;align-items:center;justify-content:center;padding:24px 16px;
+  background:linear-gradient(rgba(8,10,14,.6),rgba(8,10,14,.72)),
+    url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80');
+  background-size:cover;background-position:center;background-attachment:fixed;}
+@media(max-width:768px){body.reg{background-attachment:scroll;}}
+.reg-wrap{width:100%;max-width:480px;}
+.reg-card{padding:clamp(26px,5vw,40px);border-radius:var(--radius-lg);}
+.logo{text-align:center;margin-bottom:18px;}
+.logo .word{font-size:clamp(2rem,7vw,2.7rem);font-weight:800;letter-spacing:.04em;}
+.logo .word .meat{color:var(--primary);}
+.logo p{color:var(--muted);margin-top:4px;font-size:.82rem;letter-spacing:.12em;}
+.title{text-align:center;margin-bottom:22px;}
+.title h2{color:var(--primary-600);font-size:clamp(1.3rem,4vw,1.7rem);}
+.title p{color:var(--muted);font-size:.92rem;margin-top:4px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:480px){.row2{grid-template-columns:1fr;gap:0;}}
+.back-link{display:block;text-align:center;margin-top:18px;color:var(--muted);font-size:.9rem;}
+.back-link:hover{color:var(--primary);}
 </style>
 </head>
-<body>
+<body class="reg" data-loader-text="กำลังเปิดหน้าสมัครสมาชิก…">
 
-<div class="register-container">
+<a href="index.html" class="back-chip">← กลับ</a>
 
-    <div class="register-card">
+<div class="reg-wrap reveal" data-d="1">
+  <div class="card glass reg-card">
 
-        <div class="logo">
-            <h1>
-                <span class="meat">MEAT</span>
-                <span class="guard">GUARD</span>
-            </h1>
-
-            <p>SMART MEAT FRESHNESS DETECTION SYSTEM</p>
-        </div>
-
-        <div class="title">
-            <h2>สมัครสมาชิกด้วยอีเมล</h2>
-            <p>กรอกข้อมูลเพื่อเริ่มต้นใช้งานระบบ</p>
-        </div>
-
-        <!-- เมื่อกดลงทะเบียนจะไปหน้า category.html -->
-
-        <form action="category.html">
-
-            <div class="form-group">
-                <label>ชื่อ - นามสกุล</label>
-                <input
-                type="text"
-                placeholder="กรอกชื่อและนามสกุล"
-                required>
-            </div>
-
-            <div class="form-group">
-                <label>อีเมล</label>
-                <input
-                type="email"
-                placeholder="example@email.com"
-                required>
-            </div>
-
-            <div class="form-group">
-                <label>เบอร์โทรศัพท์</label>
-                <input
-                type="tel"
-                placeholder="08xxxxxxxx"
-                required>
-            </div>
-
-            <div class="form-group">
-                <label>รหัสผ่าน</label>
-                <input
-                type="password"
-                placeholder="สร้างรหัสผ่าน"
-                required>
-            </div>
-
-            <div class="form-group">
-                <label>ยืนยันรหัสผ่าน</label>
-                <input
-                type="password"
-                placeholder="ยืนยันรหัสผ่าน"
-                required>
-            </div>
-
-            <button
-            type="submit"
-            class="register-btn">
-                ลงทะเบียน
-            </button>
-
-        </form>
-
-        <div class="footer-text">
-            ลงทะเบียนสำเร็จ ระบบจะนำท่านไปยังหน้าหมวดหมู่การใช้งาน
-        </div>
-
+    <div class="logo">
+      <div class="word"><span class="meat">MEAT</span><span class="guard">GUARD</span></div>
+      <p>SMART MEAT FRESHNESS DETECTION SYSTEM</p>
     </div>
 
+    <div class="title">
+      <h2>สมัครสมาชิกด้วยอีเมล</h2>
+      <p>กรอกข้อมูลเพื่อเริ่มต้นใช้งานระบบ</p>
+    </div>
+
+    <form id="regForm" novalidate>
+      <div class="field">
+        <label for="name">ชื่อ - นามสกุล</label>
+        <div class="control"><span class="ic">👤</span>
+          <input class="input" id="name" type="text" placeholder="กรอกชื่อและนามสกุล" required></div>
+        <span class="field-error"></span>
+      </div>
+
+      <div class="field">
+        <label for="email">อีเมล</label>
+        <div class="control"><span class="ic">📧</span>
+          <input class="input" id="email" type="email" placeholder="example@email.com" required></div>
+        <span class="field-error"></span>
+      </div>
+
+      <div class="field">
+        <label for="phone">เบอร์โทรศัพท์</label>
+        <div class="control"><span class="ic">📱</span>
+          <input class="input" id="phone" type="tel" inputmode="numeric" placeholder="08xxxxxxxx" required></div>
+        <span class="field-error"></span>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label for="pass">รหัสผ่าน</label>
+          <div class="control"><span class="ic">🔒</span>
+            <input class="input" id="pass" type="password" placeholder="อย่างน้อย 6 ตัว" required>
+            <button type="button" class="toggle-pass" data-toggle-pass="pass">👁️</button></div>
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="pass2">ยืนยันรหัสผ่าน</label>
+          <div class="control"><span class="ic">🔒</span>
+            <input class="input" id="pass2" type="password" placeholder="พิมพ์ซ้ำอีกครั้ง" required>
+            <button type="button" class="toggle-pass" data-toggle-pass="pass2">👁️</button></div>
+          <span class="field-error"></span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:6px;">ลงทะเบียน</button>
+    </form>
+
+    <a href="index.html" class="back-link">มีบัญชีอยู่แล้ว? <b>เข้าสู่ระบบ</b></a>
+  </div>
 </div>
 
+<script src="assets/js/app.js"></script>
+<script>
+const MG = window.MeatGuard;
+const $ = (id) => document.getElementById(id);
+
+$("regForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = $("name"), email = $("email"), phone = $("phone"), p1 = $("pass"), p2 = $("pass2");
+  let ok = true;
+
+  if (name.value.trim().length < 2) { MG.setError(name, "กรุณากรอกชื่อ-นามสกุล"); ok = false; } else MG.setError(name, "");
+  if (!MG.isEmail(email.value)) { MG.setError(email, "อีเมลไม่ถูกต้อง"); ok = false; } else MG.setError(email, "");
+  if (!MG.isPhone(phone.value)) { MG.setError(phone, "เบอร์โทรไม่ถูกต้อง (ขึ้นต้น 0 และ 9-10 หลัก)"); ok = false; } else MG.setError(phone, "");
+  if (p1.value.length < 6) { MG.setError(p1, "รหัสผ่านอย่างน้อย 6 ตัวอักษร"); ok = false; } else MG.setError(p1, "");
+  if (p2.value !== p1.value || !p2.value) { MG.setError(p2, "รหัสผ่านไม่ตรงกัน"); ok = false; } else MG.setError(p2, "");
+
+  if (!ok) { MG.toast("กรุณาตรวจสอบข้อมูลอีกครั้ง", "err"); return; }
+
+  MG.Auth.set({ name: name.value.trim(), email: email.value.trim(), phone: phone.value.trim(), method: "email", at: Date.now() });
+  MG.toast("ลงทะเบียนสำเร็จ", "ok");
+  MG.go("category.html", "กำลังนำท่านเข้าสู่ระบบ…");
+});
+</script>
 </body>
 </html>

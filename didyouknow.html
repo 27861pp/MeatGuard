@@ -1,505 +1,86 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c40000">
 <title>Did You Know | MEAT GUARD</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Kanit',sans-serif;
-}
-
-
-body{
-
-    min-height:100vh;
-
-    background:
-    linear-gradient(
-    135deg,
-    #ffffff,
-    #ffeaea
-    );
-
-    padding:30px;
-
-}
-
-
-
-/* หัวข้อ */
-
-.header{
-
-    text-align:center;
-
-    margin-bottom:20px;
-
-}
-
-
-.header h1{
-
-    font-size:48px;
-
-    font-weight:800;
-
-    color:#b30000;
-
-}
-
-
-.header p{
-
-    font-size:18px;
-
-    color:#555;
-
-    margin-top:8px;
-
-}
-
-
-
-/* กล่อง 6 อัน */
-
-.container{
-
-    width:90%;
-
-    max-width:1200px;
-
-
-    margin:80px auto 0 auto;
-
-
-    display:grid;
-
-
-    grid-template-columns:repeat(3,1fr);
-
-
-    gap:25px;
-
-
-    align-items:center;
-
-}
-
-
-
-/* การ์ด */
-
-.card{
-
-    background:white;
-
-
-    border-radius:25px;
-
-
-    padding:25px;
-
-
-    min-height:230px;
-
-
-
-    border:2px solid #ffd0d0;
-
-
-
-    box-shadow:
-    0 10px 25px rgba(180,0,0,.15);
-
-
-
-    cursor:pointer;
-
-
-    transition:.3s;
-
-
-}
-
-
-
-.card:hover{
-
-    transform:translateY(-8px);
-
-
-    box-shadow:
-    0 15px 35px rgba(180,0,0,.25);
-
-}
-
-
-
-
-.icon{
-
-    font-size:42px;
-
-}
-
-
-
-
-.card h2{
-
-    color:#c40000;
-
-
-    font-size:24px;
-
-
-    font-weight:700;
-
-
-    margin:12px 0;
-
-
-}
-
-
-
-
-.content{
-
-    display:none;
-
-
-    color:#333;
-
-
-    font-size:18px;
-
-
-    line-height:1.8;
-
-
-}
-
-
-
-.card.active .content{
-
-    display:block;
-
-}
-
-
-
-
-
-/* ปุ่มย้อนกลับ */
-
-.back-btn{
-
-    position:fixed;
-
-
-    right:30px;
-
-
-    bottom:30px;
-
-
-
-    width:70px;
-
-
-    height:70px;
-
-
-
-    background:#c40000;
-
-
-    color:white;
-
-
-
-    border-radius:50%;
-
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-
-    font-size:35px;
-
-
-    text-decoration:none;
-
-
-    box-shadow:
-    0 10px 25px rgba(196,0,0,.3);
-
-}
-
-
-
-.back-btn:hover{
-
-    transform:scale(1.1);
-
-    background:#990000;
-
-}
-
-
-
-/* มือถือ */
-
-@media(max-width:1000px){
-
-
-.container{
-
-    grid-template-columns:1fr;
-
-    margin-top:40px;
-
-}
-
-
-
-.header h1{
-
-    font-size:36px;
-
-}
-
-
-
-.card h2{
-
-    font-size:22px;
-
-}
-
-
-.content{
-
-    font-size:16px;
-
-}
-
-
-}
-
-
+body.dyk{background:linear-gradient(135deg,#fff,#ffe9e9 60%,#ffdede);}
+.dyk-head{text-align:center;padding:clamp(64px,9vw,72px) 16px 6px;}
+.dyk-head h1{font-size:clamp(1.9rem,6vw,3rem);font-weight:800;color:var(--primary-700);}
+.dyk-head p{color:var(--ink-soft);margin-top:8px;font-size:clamp(.92rem,2.4vw,1.05rem);}
+.dyk-head .tip{display:inline-flex;align-items:center;gap:.5em;margin-top:14px;font-size:.85rem;color:var(--muted);
+  background:#fff;padding:.5em 1.1em;border-radius:99px;box-shadow:var(--shadow-sm);}
+.dyk-grid{max-width:1100px;margin:26px auto;padding:0 clamp(16px,4vw,28px) clamp(48px,8vw,80px);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:900px){.dyk-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:620px){.dyk-grid{grid-template-columns:1fr;}}
+.dyk-card{background:#fff;border:2px solid #ffd6d6;border-radius:var(--radius-lg);padding:24px;cursor:pointer;
+  box-shadow:0 10px 26px rgba(180,0,0,.1);transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s;}
+.dyk-card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(180,0,0,.18);border-color:#ff9a9a;}
+.dyk-card.active{border-color:var(--primary);box-shadow:0 16px 40px rgba(196,0,0,.22);}
+.dyk-card .ic{font-size:2.4rem;}
+.dyk-card h2{color:var(--primary-600);font-size:1.2rem;font-weight:700;margin:10px 0;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.dyk-card h2 .caret{font-size:1rem;color:var(--muted);transition:transform .3s var(--ease);}
+.dyk-card.active h2 .caret{transform:rotate(180deg);color:var(--primary);}
+.dyk-card .content{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease);}
+.dyk-card.active .content{grid-template-rows:1fr;}
+.dyk-card .content > div{overflow:hidden;color:var(--ink-soft);font-size:.98rem;line-height:1.8;}
+.dyk-card.active .content > div{padding-top:6px;}
 </style>
-
 </head>
+<body class="dyk" data-loader-text="กำลังโหลดเกร็ดความรู้…">
 
+<a href="category.html" class="back-chip">← หมวดหมู่</a>
 
-<body>
-
-
-
-<div class="header">
-
-<h1>
-📌 Did You Know
-</h1>
-
-<p>
-MEAT GUARD | ศูนย์ความรู้การตรวจสอบความสดของเนื้อสัตว์
-</p>
-
+<div class="dyk-head reveal" data-d="1">
+  <h1>📌 Did You Know</h1>
+  <p>MEAT GUARD · ศูนย์ความรู้การตรวจสอบความสดของเนื้อสัตว์</p>
+  <div class="tip">👆 แตะที่การ์ดเพื่อดูรายละเอียด</div>
 </div>
 
-
-
-
-<div class="container">
-
-
-
-<div class="card">
-
-<div class="icon">🥩</div>
-
-<h2>การตรวจความสดช่วยอะไร?</h2>
-
-<div class="content">
-
-การตรวจความสดของเนื้อสัตว์ช่วยให้ทราบคุณภาพก่อนนำไปประกอบอาหาร
-ช่วยลดความเสี่ยงจากเนื้อสัตว์ที่เสื่อมสภาพ
-และช่วยเพิ่มความมั่นใจในการบริโภค
-
+<div class="dyk-grid">
+  <div class="dyk-card reveal" data-d="2"><div class="ic">🥩</div>
+    <h2>การตรวจความสดช่วยอะไร? <span class="caret">▾</span></h2>
+    <div class="content"><div>ช่วยให้ทราบคุณภาพเนื้อสัตว์ก่อนนำไปประกอบอาหาร ลดความเสี่ยงจากเนื้อที่เสื่อมสภาพ และเพิ่มความมั่นใจในการบริโภค</div></div>
+  </div>
+  <div class="dyk-card reveal" data-d="2"><div class="ic">🦠</div>
+    <h2>ลดความเสี่ยงอาหารเป็นพิษ <span class="caret">▾</span></h2>
+    <div class="content"><div>ลดโอกาสได้รับเชื้อจุลินทรีย์ที่เป็นอันตราย ซึ่งบางชนิดมองไม่เห็นด้วยตาเปล่าและอาจส่งผลต่อสุขภาพ</div></div>
+  </div>
+  <div class="dyk-card reveal" data-d="3"><div class="ic">🧪</div>
+    <h2>ตรวจการเปลี่ยนแปลงของเนื้อ <span class="caret">▾</span></h2>
+    <div class="content"><div>เมื่อเนื้อเริ่มเสื่อมคุณภาพจะเกิดการเปลี่ยนแปลงทางเคมีและสารระเหยบางชนิด ซึ่งใช้วิเคราะห์ระดับความสดได้</div></div>
+  </div>
+  <div class="dyk-card reveal" data-d="3"><div class="ic">❄️</div>
+    <h2>ช่วยการเก็บรักษา <span class="caret">▾</span></h2>
+    <div class="content"><div>ช่วยให้รู้ว่าเนื้อสัตว์ควรเก็บในตู้เย็น แช่แข็ง หรือควรนำไปประกอบอาหารทันที</div></div>
+  </div>
+  <div class="dyk-card reveal" data-d="4"><div class="ic">💰</div>
+    <h2>ลดการสูญเสียอาหาร <span class="caret">▾</span></h2>
+    <div class="content"><div>ลดการทิ้งเนื้อสัตว์โดยไม่จำเป็น ใช้วัตถุดิบได้คุ้มค่า และลดค่าใช้จ่ายในชีวิตประจำวัน</div></div>
+  </div>
+  <div class="dyk-card reveal" data-d="4"><div class="ic">🛡️</div>
+    <h2>เพิ่มความปลอดภัยอาหาร <span class="caret">▾</span></h2>
+    <div class="content"><div>ช่วยให้ผู้บริโภคเลือกอาหารได้อย่างมั่นใจ ลดความเสี่ยงจากเนื้อสัตว์ที่ไม่ปลอดภัย และส่งเสริมการบริโภคที่ดีขึ้น</div></div>
+  </div>
 </div>
 
-</div>
+<a href="category.html" class="fab-back" id="fab">←</a>
 
-
-
-
-
-<div class="card">
-
-<div class="icon">🦠</div>
-
-<h2>ลดความเสี่ยงอาหารเป็นพิษ</h2>
-
-<div class="content">
-
-ช่วยลดโอกาสได้รับเชื้อจุลินทรีย์ที่เป็นอันตราย
-ซึ่งบางชนิดไม่สามารถมองเห็นได้ด้วยตาเปล่า
-และอาจส่งผลต่อสุขภาพ
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<div class="icon">🧪</div>
-
-<h2>ตรวจการเปลี่ยนแปลงของเนื้อ</h2>
-
-<div class="content">
-
-เมื่อเนื้อสัตว์เริ่มเสื่อมคุณภาพจะเกิดการเปลี่ยนแปลงทางเคมี
-และเกิดสารระเหยหรือก๊าซบางชนิด
-ซึ่งสามารถใช้วิเคราะห์ระดับความสดได้
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<div class="icon">❄️</div>
-
-<h2>ช่วยการเก็บรักษา</h2>
-
-<div class="content">
-
-ช่วยให้รู้ว่าเนื้อสัตว์ควรเก็บในตู้เย็น
-แช่แข็ง
-หรือควรนำไปประกอบอาหารทันที
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<div class="icon">💰</div>
-
-<h2>ลดการสูญเสียอาหาร</h2>
-
-<div class="content">
-
-ช่วยลดการทิ้งเนื้อสัตว์โดยไม่จำเป็น
-ใช้วัตถุดิบได้คุ้มค่า
-และลดค่าใช้จ่ายในชีวิตประจำวัน
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<div class="icon">🛡️</div>
-
-<h2>เพิ่มความปลอดภัยอาหาร</h2>
-
-<div class="content">
-
-ช่วยให้ผู้บริโภคเลือกอาหารได้อย่างมั่นใจ
-ลดความเสี่ยงจากเนื้อสัตว์ที่ไม่ปลอดภัย
-และส่งเสริมการบริโภคที่ดีขึ้น
-
-</div>
-
-</div>
-
-
-
-</div>
-
-
-
-
-<a href="javascript:history.back()" class="back-btn">
-←
-</a>
-
-
-
-
+<script src="assets/js/app.js"></script>
 <script>
-
-
-const cards=document.querySelectorAll(".card");
-
-
-cards.forEach(card=>{
-
-
-card.addEventListener("click",()=>{
-
-
-cards.forEach(c=>{
-
-if(c!==card){
-
-c.classList.remove("active");
-
-}
-
-});
-
-
-card.classList.toggle("active");
-
-
-});
-
-
-});
-
-
+const MG=window.MeatGuard;MG.guard();
+const cards=document.querySelectorAll(".dyk-card");
+cards.forEach((card)=>card.addEventListener("click",()=>{
+  cards.forEach((c)=>{if(c!==card)c.classList.remove("active");});
+  card.classList.toggle("active");
+}));
+document.getElementById("fab").addEventListener("click",(e)=>{e.preventDefault();MG.go("category.html");});
+document.querySelector(".back-chip").addEventListener("click",(e)=>{e.preventDefault();MG.go("category.html");});
 </script>
-
-
-
 </body>
 </html>

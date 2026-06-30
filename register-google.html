@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>ดำเนินการต่อด้วย Google | MEAT GUARD</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+<style>
+body.gg{display:flex;align-items:center;justify-content:center;padding:24px 16px;
+  background:linear-gradient(135deg,#e8f0fe,#f1f3f4 60%,#fce8e6);}
+.gg-wrap{width:100%;max-width:430px;}
+.gg-card{background:#fff;border:1px solid #dadce0;border-radius:18px;padding:clamp(28px,6vw,44px);
+  box-shadow:var(--shadow-lg);}
+.gg-logo{display:flex;justify-content:center;margin-bottom:14px;}
+.gg-logo svg{width:46px;height:46px;}
+.gg-card h1{text-align:center;font-size:1.5rem;font-weight:500;color:#202124;margin-bottom:4px;}
+.gg-card .sub{text-align:center;color:#5f6368;font-size:.95rem;margin-bottom:26px;}
+.gg-field{margin-bottom:18px;}
+.gg-field label{display:block;font-size:.85rem;color:#5f6368;margin-bottom:6px;}
+.gg-input{width:100%;padding:14px 15px;border:1px solid #dadce0;border-radius:8px;font-size:1rem;
+  color:#202124;background:#fff;color-scheme:light;transition:.2s;}
+.gg-input::placeholder{color:#9aa0a6;}
+.gg-input:focus{outline:none;border-color:#1a73e8;box-shadow:0 0 0 3px rgba(26,115,232,.18);}
+.gg-input.bad{border-color:#d93025;box-shadow:0 0 0 3px rgba(217,48,37,.15);}
+.gg-err{display:block;font-size:.8rem;color:#d93025;margin-top:6px;min-height:1em;}
+.gg-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;}
+.gg-link{color:#1a73e8;font-weight:600;font-size:.92rem;}
+.gg-link:hover{text-decoration:underline;}
+.gg-next{background:#1a73e8;color:#fff;padding:11px 26px;border-radius:8px;font-weight:600;font-size:.95rem;
+  transition:.2s;}
+.gg-next:hover{background:#1765cc;box-shadow:0 4px 12px rgba(26,115,232,.35);}
+.gg-foot{text-align:center;margin-top:22px;color:#5f6368;font-size:.82rem;}
+.gg-foot a{color:#1a73e8;}
+.gchip{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid #dadce0;border-radius:10px;
+  margin-bottom:10px;cursor:pointer;transition:.2s;}
+.gchip:hover{background:#f8f9fe;border-color:#c6d4f2;}
+.gchip .av{width:34px;height:34px;border-radius:50%;background:#1a73e8;color:#fff;display:grid;place-items:center;font-weight:600;}
+.gchip .meta b{display:block;color:#202124;font-size:.95rem;font-weight:500;}
+.gchip .meta span{color:#5f6368;font-size:.82rem;}
+</style>
+</head>
+<body class="gg" data-loader-text="กำลังเชื่อมต่อ Google…">
+
+<a href="index.html" class="back-chip">← กลับ</a>
+
+<div class="gg-wrap reveal" data-d="1">
+  <div class="gg-card">
+    <div class="gg-logo">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+    </div>
+    <h1>เข้าสู่ระบบด้วย Google</h1>
+    <div class="sub">ดำเนินการต่อไปยัง Meat Guard</div>
+
+    <form id="ggForm" novalidate>
+      <div class="gg-field">
+        <label for="gname">ชื่อที่แสดง</label>
+        <input class="gg-input" id="gname" type="text" placeholder="ชื่อ - นามสกุล" required>
+        <span class="gg-err" data-for="gname"></span>
+      </div>
+      <div class="gg-field">
+        <label for="gemail">อีเมล Google</label>
+        <input class="gg-input" id="gemail" type="email" placeholder="example@gmail.com" required>
+        <span class="gg-err" data-for="gemail"></span>
+      </div>
+
+      <div class="gg-actions">
+        <a href="index.html" class="gg-link">ใช้บัญชีอื่น</a>
+        <button type="submit" class="gg-next">ถัดไป</button>
+      </div>
+    </form>
+
+    <div class="gg-foot">
+      การดำเนินการต่อถือว่ายอมรับ <a href="#">เงื่อนไขการใช้งาน</a> ของ Meat Guard
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script>
+const MG = window.MeatGuard;
+const $ = (id) => document.getElementById(id);
+
+function err(input, msg) {
+  input.classList.toggle("bad", !!msg);
+  const box = document.querySelector('.gg-err[data-for="' + input.id + '"]');
+  if (box) box.textContent = msg || "";
+}
+
+$("ggForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const n = $("gname"), m = $("gemail");
+  let ok = true;
+  if (n.value.trim().length < 2) { err(n, "กรุณากรอกชื่อที่แสดง"); ok = false; } else err(n, "");
+  if (!MG.isEmail(m.value)) { err(m, "กรุณากรอกอีเมล Google ให้ถูกต้อง"); ok = false; } else err(m, "");
+  if (!ok) return;
+
+  MG.Auth.set({ name: n.value.trim(), email: m.value.trim(), method: "google", at: Date.now() });
+  MG.toast("เข้าสู่ระบบด้วย Google สำเร็จ", "ok");
+  MG.go("category.html", "กำลังนำท่านเข้าสู่ระบบ…");
+});
+</script>
+</body>
+</html>

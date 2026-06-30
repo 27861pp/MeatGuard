@@ -2,208 +2,94 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ประโยชน์และความปลอดภัยด้านอาหาร | MEAT GUARD</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c40000">
+<title>ความปลอดภัยด้านอาหาร | MEAT GUARD</title>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="assets/css/app.css">
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Kanit',sans-serif;
-}
-
-body{
-    min-height:100vh;
-    padding:40px;
-
-    background:
-    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-    url('https://images.unsplash.com/photo-1604908177522-0407f8e9a0f3?auto=format&fit=crop&w=1920&q=80');
-
-    background-size:cover;
-    background-position:center;
-}
-
-.title{
-    text-align:center;
-    color:white;
-    font-size:46px;
-    font-weight:800;
-    margin-bottom:30px;
-}
-
-.container{
-    max-width:1100px;
-    margin:auto;
-}
-
-.card{
-    background:rgba(255,255,255,.97);
-    padding:30px;
-    border-radius:20px;
-    margin-bottom:20px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
-}
-
-h2{
-    color:#c40000;
-    font-size:24px;
-    margin-bottom:10px;
-}
-
-p{
-    font-size:18px;
-    line-height:2;
-    color:#333;
-}
-
-ul{
-    margin-left:25px;
-    margin-top:10px;
-}
-
-li{
-    font-size:18px;
-    line-height:1.9;
-    margin-bottom:8px;
-}
-
-/* กล่องเน้น */
-.highlight{
-    background:#fff3f3;
-    border-left:6px solid #c40000;
-    padding:15px;
-    margin-top:10px;
-    font-weight:500;
-}
-
-/* ปุ่มย้อนกลับ */
-.back-btn{
-    position:fixed;
-    right:40px;
-    bottom:40px;
-
-    width:70px;
-    height:70px;
-
-    border-radius:50%;
-    background:#c40000;
-    color:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:35px;
-    text-decoration:none;
-}
-
-.back-btn:hover{
-    background:#990000;
-    transform:scale(1.1);
-}
-
+body.fs{--photo:url('https://images.unsplash.com/photo-1604908177522-0407f8e9a0f3?auto=format&fit=crop&w=1600&q=80');}
+.fs-grid{max-width:980px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  padding:0 clamp(16px,4vw,28px) clamp(40px,8vw,80px);}
+@media(max-width:760px){.fs-grid{grid-template-columns:1fr;}}
+.fs-card{background:rgba(255,255,255,.98);border-radius:var(--radius-lg);padding:clamp(20px,3.5vw,28px);
+  box-shadow:var(--shadow-lg);transition:transform .25s var(--ease);}
+.fs-card:hover{transform:translateY(-5px);}
+.fs-card h2{color:var(--primary-600);font-size:clamp(1.15rem,2.5vw,1.4rem);margin-bottom:12px;display:flex;gap:.5em;align-items:flex-start;}
+.fs-card p{color:var(--ink-soft);line-height:1.85;font-size:.98rem;}
+.fs-card ul{margin-top:12px;list-style:none;display:flex;flex-direction:column;gap:8px;}
+.fs-card li{display:flex;gap:9px;color:var(--ink-soft);font-size:.96rem;line-height:1.5;}
+.fs-card li::before{content:"✓";color:var(--success);font-weight:700;flex:0 0 auto;}
+.highlight{margin-top:14px;background:var(--primary-050);border-left:5px solid var(--primary);
+  padding:13px 15px;border-radius:0 12px 12px 0;font-weight:500;color:var(--primary-700);font-size:.95rem;}
 </style>
 </head>
+<body class="fs photo-bg" data-loader-text="กำลังโหลดข้อมูล…">
 
-<body>
+<a href="category.html" class="back-chip">← หมวดหมู่</a>
 
-<h1 class="title">🛡️ ประโยชน์และความปลอดภัยด้านอาหาร</h1>
+<div class="page-head reveal" data-d="1">
+  <h1>🛡️ ความปลอดภัยด้านอาหาร</h1>
+  <p>ประโยชน์และความสำคัญของการจัดการอาหารอย่างปลอดภัย</p>
+</div>
 
-<div class="container">
+<div class="fs-grid">
 
-<!-- 1 -->
-<div class="card">
+  <article class="fs-card reveal" data-d="2">
+    <h2>🥩 ความสำคัญของความปลอดภัยอาหาร</h2>
+    <p>การควบคุมคุณภาพอาหารตั้งแต่การผลิต การเก็บรักษา การขนส่ง จนถึงการบริโภค เพื่อป้องกันอันตรายจากเชื้อจุลินทรีย์ สารเคมี หรือการปนเปื้อน</p>
+    <ul>
+      <li>ลดความเสี่ยงจากโรคอาหารเป็นพิษ</li>
+      <li>ลดการปนเปื้อนของเชื้อ เช่น Salmonella และ E. coli</li>
+      <li>เพิ่มความมั่นใจในการบริโภคอาหาร</li>
+      <li>ยกระดับมาตรฐานอุตสาหกรรมอาหาร</li>
+    </ul>
+  </article>
 
-<h2>🥩 ความสำคัญของความปลอดภัยอาหาร</h2>
+  <article class="fs-card reveal" data-d="3">
+    <h2>❄️ ความสำคัญของการเก็บรักษา</h2>
+    <p>เนื้อสัตว์เสื่อมสภาพได้เร็ว หากไม่ได้รับการเก็บรักษาที่เหมาะสม เชื้อจุลินทรีย์จะเจริญเติบโตอย่างรวดเร็ว</p>
+    <ul>
+      <li>เก็บที่ 0–4°C เพื่อชะลอการเจริญเติบโตของเชื้อ</li>
+      <li>การแช่แข็งช่วยหยุดการทำงานของจุลินทรีย์บางชนิด</li>
+      <li>ปิดภาชนะเพื่อลดการปนเปื้อนจากอากาศ</li>
+      <li>แยกอาหารดิบและอาหารสุกลดการปนเปื้อนข้าม</li>
+    </ul>
+    <div class="highlight">⚠️ แม้อาหารจะดูปกติ แต่เชื้อโรคอาจเพิ่มจำนวนจนถึงระดับอันตรายโดยไม่เห็นด้วยตา</div>
+  </article>
 
-<p>
-ความปลอดภัยอาหารคือการควบคุมคุณภาพของอาหารตั้งแต่การผลิต การเก็บรักษา การขนส่ง จนถึงการบริโภค
-เพื่อป้องกันอันตรายที่อาจเกิดจากเชื้อจุลินทรีย์ สารเคมี หรือการปนเปื้อนต่าง ๆ
-</p>
+  <article class="fs-card reveal" data-d="4">
+    <h2>🧠 ประโยชน์ต่อสุขภาพและสังคม</h2>
+    <p>การจัดการอาหารอย่างปลอดภัยส่งผลต่อผู้บริโภค ระบบสาธารณสุข และเศรษฐกิจโดยรวม</p>
+    <ul>
+      <li>ลดค่าใช้จ่ายด้านการรักษาโรคจากอาหาร</li>
+      <li>ลดการสูญเสียอาหารจากการเน่าเสีย</li>
+      <li>เพิ่มความมั่นคงทางอาหารในระยะยาว</li>
+      <li>สนับสนุนการผลิตอาหารที่มีคุณภาพ</li>
+    </ul>
+  </article>
 
-<ul>
-<li>ช่วยลดความเสี่ยงจากโรคอาหารเป็นพิษ</li>
-<li>ลดการปนเปื้อนของเชื้อแบคทีเรีย เช่น Salmonella และ E. coli</li>
-<li>เพิ่มความมั่นใจในการบริโภคอาหาร</li>
-<li>ช่วยยกระดับมาตรฐานอุตสาหกรรมอาหาร</li>
-</ul>
+  <article class="fs-card reveal" data-d="5">
+    <h2>⚠️ ความเสี่ยงจากการจัดการที่ไม่ถูกต้อง</h2>
+    <p>การเก็บรักษาหรือปรุงอาหารที่ไม่เหมาะสม ทำให้เกิดการสะสมของเชื้อโรคซึ่งอาจนำไปสู่โรคที่รุนแรงได้</p>
+    <ul>
+      <li>อาหารเป็นพิษเฉียบพลัน</li>
+      <li>การติดเชื้อในระบบทางเดินอาหาร</li>
+      <li>ภาวะท้องเสียและขาดน้ำ</li>
+      <li>ความเสี่ยงต่อกลุ่มเด็กและผู้สูงอายุ</li>
+    </ul>
+    <div class="highlight">🚨 อาหารบางชนิดอาจดูปกติทั้งสี กลิ่น และรส แต่ยังมีเชื้อโรคอันตรายแฝงอยู่</div>
+  </article>
 
 </div>
 
-<!-- 2 -->
-<div class="card">
+<a href="category.html" class="fab-back" id="fab">←</a>
 
-<h2>❄️ ความสำคัญของการเก็บรักษาเนื้อสัตว์</h2>
-
-<p>
-เนื้อสัตว์เป็นอาหารที่เสื่อมสภาพได้เร็ว หากไม่ได้รับการเก็บรักษาที่เหมาะสม
-เชื้อจุลินทรีย์จะเจริญเติบโตอย่างรวดเร็ว ส่งผลให้เกิดการเน่าเสียและอันตรายต่อสุขภาพ
-</p>
-
-<ul>
-<li>ควรเก็บที่อุณหภูมิ 0–4°C เพื่อชะลอการเจริญเติบโตของเชื้อโรค</li>
-<li>การแช่แข็งช่วยหยุดการทำงานของจุลินทรีย์บางชนิด</li>
-<li>การปิดภาชนะช่วยลดการปนเปื้อนจากอากาศและสิ่งแวดล้อม</li>
-<li>การแยกอาหารดิบและอาหารสุกช่วยลดการปนเปื้อนข้าม</li>
-</ul>
-
-<div class="highlight">
-⚠️ แม้อาหารจะดูปกติ แต่เชื้อโรคอาจเพิ่มจำนวนจนถึงระดับอันตรายโดยไม่เห็นด้วยตา
-</div>
-
-</div>
-
-<!-- 3 -->
-<div class="card">
-
-<h2>🧠 ประโยชน์ต่อสุขภาพและสังคม</h2>
-
-<p>
-การจัดการอาหารอย่างปลอดภัยไม่เพียงส่งผลต่อผู้บริโภคโดยตรง
-แต่ยังส่งผลต่อระบบสาธารณสุขและเศรษฐกิจโดยรวม
-</p>
-
-<ul>
-<li>ลดค่าใช้จ่ายด้านการรักษาโรคที่เกิดจากอาหาร</li>
-<li>ลดการสูญเสียอาหารจากการเน่าเสีย</li>
-<li>เพิ่มความมั่นคงทางอาหารในระยะยาว</li>
-<li>สนับสนุนการผลิตอาหารที่มีคุณภาพ</li>
-</ul>
-
-</div>
-
-<!-- 4 -->
-<div class="card">
-
-<h2>⚠️ ความเสี่ยงจากการจัดการที่ไม่ถูกต้อง</h2>
-
-<p>
-การเก็บรักษาหรือปรุงอาหารที่ไม่เหมาะสมสามารถทำให้เกิดการสะสมของเชื้อโรค
-ซึ่งอาจนำไปสู่โรคที่รุนแรงได้
-</p>
-
-<ul>
-<li>อาหารเป็นพิษเฉียบพลัน</li>
-<li>การติดเชื้อในระบบทางเดินอาหาร</li>
-<li>ภาวะท้องเสียและขาดน้ำ</li>
-<li>ความเสี่ยงต่อกลุ่มเด็กและผู้สูงอายุ</li>
-</ul>
-
-<div class="highlight">
-🚨 อาหารบางชนิดอาจดูปกติทั้งสี กลิ่น และรส แต่ยังมีเชื้อโรคอันตรายแฝงอยู่
-</div>
-
-</div>
-
-</div>
-
-<a href="javascript:history.back()" class="back-btn">←</a>
-
+<script src="assets/js/app.js"></script>
+<script>
+const MG=window.MeatGuard;MG.guard();
+document.getElementById("fab").addEventListener("click",(e)=>{e.preventDefault();MG.go("category.html");});
+document.querySelector(".back-chip").addEventListener("click",(e)=>{e.preventDefault();MG.go("category.html");});
+</script>
 </body>
 </html>

@@ -1,842 +1,355 @@
 <!DOCTYPE html>
-<html lang="th">
-
+<html lang="th" data-theme="dark">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#070b10">
 <title>Meat Guard Monitor</title>
 
-
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap" rel="stylesheet">
-
-
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
 <style>
-
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Kanit',sans-serif;
-}
-
-
-
-body{
-
-background:#070b10;
-color:white;
-padding:25px;
-
-}
-
-
-
-.container{
-
-max-width:1100px;
-margin:auto;
-
-}
-
-
-
-
-.header{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:30px;
-
-}
-
-
-
-.logo{
-
-font-size:28px;
-font-weight:700;
-
-}
-
-
-.online{
-
-color:#2ee6a0;
-
-}
-
-
-
-
-.status{
-
-background:#101923;
-
-border:1px solid #243444;
-
-border-radius:20px;
-
-padding:40px;
-
-display:flex;
-
-align-items:center;
-
-gap:50px;
-
-margin-bottom:25px;
-
-}
-
-
-
-
-.loader{
-
-width:180px;
-
-height:180px;
-
-border-radius:50%;
-
-border:10px solid #1b3045;
-
-border-top:10px solid #2196ff;
-
-animation:spin 1.5s linear infinite;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:25px;
-
-}
-
-
-
-@keyframes spin{
-
-100%{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-
-
-
-
-.status h1{
-
-font-size:50px;
-
-}
-
-
-
-
-.sub{
-
-font-size:22px;
-
-color:#aaa;
-
-margin:15px 0;
-
-}
-
-
-
-
-
-.progress{
-
-height:12px;
-
-background:#222;
-
-border-radius:10px;
-
-overflow:hidden;
-
-}
-
-
-
-.progress span{
-
-display:block;
-
-height:100%;
-
-background:#2196ff;
-
-width:0%;
-
-transition:.5s;
-
-}
-
-
-
-
-.time{
-
-margin-top:15px;
-
-font-size:18px;
-
-color:#2196ff;
-
-}
-
-
-
-
-
-.grid{
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:15px;
-
-}
-
-
-
-
-.card{
-
-background:#101923;
-
-border:1px solid #243444;
-
-padding:25px;
-
-border-radius:18px;
-
-}
-
-
-
-
-.card h3{
-
-color:#8da0b5;
-
-font-size:15px;
-
-}
-
-
-
-.value{
-
-font-size:38px;
-
-margin-top:15px;
-
-}
-
-
-
-
-
-.chart{
-
-margin-top:25px;
-
-background:#101923;
-
-border:1px solid #243444;
-
-padding:25px;
-
-border-radius:18px;
-
-}
-
-
-
-
-@media(max-width:800px){
-
-.status{
-
-flex-direction:column;
-
-}
-
-
-.grid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-
-}
-
-
-.back-btn{
-
-position:fixed;
-
-top:25px;
-
-left:25px;
-
-background:#101923;
-
-border:1px solid #243444;
-
-color:white;
-
-padding:10px 20px;
-
-border-radius:12px;
-
-font-size:16px;
-
-cursor:pointer;
-
-transition:.3s;
-
-z-index:10;
-
-}
-
-
-.back-btn:hover{
-
-background:#2196ff;
-
-transform:translateX(-5px);
-
-}
-
-
+body.mon{background:radial-gradient(120% 80% at 50% -10%,#0e1825,#070b10 60%);color:#e8eef5;padding:0;}
+.mon-wrap{max-width:1120px;margin:auto;padding:clamp(16px,4vw,28px);}
+
+/* header */
+.mon-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px;flex-wrap:wrap;}
+.mon-left{display:flex;align-items:center;gap:12px;}
+.mon-back{flex:0 0 auto;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:#13202c;border:1px solid #25384a;color:#cfe0f0;font-size:1.2rem;transition:.2s;}
+.mon-back:hover{background:#1b2c3c;transform:translateX(-2px);}
+.mon-logo{display:flex;align-items:center;gap:.5em;font-size:clamp(1.3rem,4vw,1.7rem);font-weight:800;}
+.mon-logo .meat{color:#ff3636;}
+.mon-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.online{display:inline-flex;align-items:center;gap:.5em;color:#2ee6a0;font-weight:600;font-size:.92rem;
+  padding:.45em 1em;border-radius:99px;background:rgba(46,230,160,.12);border:1px solid rgba(46,230,160,.3);}
+.online.demo{color:#ffc24b;background:rgba(255,194,75,.12);border-color:rgba(255,194,75,.3);}
+.online .dot{width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor;
+  animation:blink 1.4s infinite;}
+@keyframes blink{50%{opacity:.35;}}
+.mini-btn{padding:.55em 1.1em;border-radius:99px;font-weight:600;font-size:.88rem;color:#cfe0f0;
+  background:#13202c;border:1px solid #25384a;transition:.2s;}
+.mini-btn:hover{background:#1b2c3c;transform:translateY(-1px);}
+
+/* status panel */
+.status{background:linear-gradient(180deg,#101b27,#0d1620);border:1px solid #20323f;border-radius:var(--radius-lg);
+  padding:clamp(24px,4vw,38px);display:flex;align-items:center;gap:clamp(20px,4vw,46px);margin-bottom:20px;flex-wrap:wrap;}
+.ring{--p:0;flex:0 0 auto;width:clamp(120px,30vw,170px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--rc,#2196ff) calc(var(--p)*1%),#1a2a39 0);position:relative;transition:--p .6s var(--ease);}
+.ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:#0d1620;}
+.ring .rc{position:relative;text-align:center;}
+.ring .rc .ico{font-size:clamp(1.6rem,5vw,2.2rem);}
+.ring .rc .pct{font-size:1rem;color:#8da6bd;margin-top:2px;}
+.ring.spin{background:#1a2a39;}
+.ring.spin::after{content:"";position:absolute;inset:0;border-radius:50%;
+  border:8px solid transparent;border-top-color:var(--rc,#2196ff);animation:spin 1.3s linear infinite;}
+.status-body{flex:1;min-width:240px;}
+.status-body h1{font-size:clamp(1.6rem,5vw,2.6rem);line-height:1.1;}
+.status-body .sub{color:#92a6ba;margin:10px 0 16px;font-size:clamp(.95rem,2.5vw,1.1rem);}
+.progress{height:12px;background:#16242f;border-radius:99px;overflow:hidden;}
+.progress span{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#2196ff,#46c6ff);transition:width .6s var(--ease);}
+.time{margin-top:12px;font-size:.95rem;color:#5fa9ff;}
+.verdict{display:none;margin-top:16px;flex-wrap:wrap;gap:10px;align-items:center;}
+.verdict.show{display:flex;}
+.v-badge{display:inline-flex;align-items:center;gap:.5em;padding:.6em 1.2em;border-radius:99px;font-weight:700;font-size:1.05rem;}
+.v-fresh{background:rgba(34,197,94,.16);color:#4ade80;border:1px solid rgba(34,197,94,.4);}
+.v-warn{background:rgba(245,158,11,.16);color:#fbbf24;border:1px solid rgba(245,158,11,.4);}
+.v-spoiled{background:rgba(239,68,68,.16);color:#f87171;border:1px solid rgba(239,68,68,.4);}
+
+/* metric grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr);}}
+.metric{background:#101b27;border:1px solid #20323f;border-radius:var(--radius);padding:20px;position:relative;overflow:hidden;}
+.metric .lab{display:flex;align-items:center;gap:.5em;color:#8da6bd;font-size:.82rem;letter-spacing:.06em;font-weight:600;}
+.metric .val{font-size:clamp(1.8rem,5vw,2.4rem);font-weight:700;margin-top:12px;line-height:1;}
+.metric .val small{font-size:.9rem;color:#7e93a7;font-weight:400;margin-left:4px;}
+.metric .bar{margin-top:12px;height:6px;border-radius:99px;background:#16242f;overflow:hidden;}
+.metric .bar span{display:block;height:100%;width:0;border-radius:99px;background:#2196ff;transition:width .6s var(--ease),background .4s;}
+.metric.lvl-ok .bar span{background:#22c55e;}
+.metric.lvl-warn .bar span{background:#f59e0b;}
+.metric.lvl-bad .bar span{background:#ef4444;}
+
+/* chart */
+.chart-card{background:#101b27;border:1px solid #20323f;border-radius:var(--radius);padding:clamp(18px,3vw,26px);}
+.chart-card .ttl{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.chart-card .ttl h3{font-size:1.1rem;font-weight:700;}
+.legend{display:flex;gap:14px;font-size:.85rem;color:#9fb3c6;}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:middle;}
+.chart-box{position:relative;min-height:300px;}
+.chart-skel{position:absolute;inset:0;display:flex;align-items:flex-end;gap:10px;padding:10px 0;}
+.chart-skel .b{flex:1;border-radius:8px 8px 0 0;}
+
+.footer-note{text-align:center;color:#5b6f82;font-size:.82rem;margin:26px 0 10px;}
 </style>
-
-
 </head>
+<body class="mon theme-dark" data-loader-text="กำลังเชื่อมต่อเซนเซอร์…">
 
+<div class="mon-wrap">
 
-<body>
+  <div class="mon-head reveal" data-d="1">
+    <div class="mon-left">
+      <a href="category.html" class="mon-back" id="backChip" aria-label="กลับ">←</a>
+      <div class="mon-logo"><span class="meat">🥩 MEAT</span><span class="guard">GUARD</span></div>
+    </div>
+    <div class="mon-actions">
+      <span class="online" id="conn"><span class="dot"></span> ONLINE</span>
+      <button class="mini-btn" id="skipBtn">⏩ ดูผลทันที</button>
+      <button class="mini-btn" id="resetBtn">🔄 ตรวจใหม่</button>
+    </div>
+  </div>
 
+  <!-- STATUS -->
+  <section class="status reveal" data-d="2">
+    <div class="ring spin" id="ring" style="--rc:#2196ff;">
+      <div class="rc"><div class="ico" id="ringIco">🧪</div><div class="pct" id="ringPct">0%</div></div>
+    </div>
+    <div class="status-body">
+      <h1 id="status">กำลังวิเคราะห์…</h1>
+      <div class="sub" id="message">ระบบกำลังตรวจสอบความสดของเนื้อสัตว์</div>
+      <div class="progress"><span id="bar"></span></div>
+      <div class="time" id="time">กำลังวิเคราะห์ 0 / 5 นาที</div>
+      <div class="verdict" id="verdict">
+        <span class="v-badge" id="vBadge">—</span>
+        <a class="btn btn-primary" href="recommend.html" id="vLink" style="padding:.6em 1.3em;">ดูคำแนะนำการบริโภค →</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- METRICS -->
+  <section class="grid reveal" data-d="3">
+    <div class="metric" id="m-temp">
+      <div class="lab">🌡️ TEMPERATURE</div>
+      <div class="val" data-skel><span class="skeleton dark sk-title" style="display:inline-block;width:90px;"></span></div>
+      <div class="bar"><span></span></div>
+    </div>
+    <div class="metric" id="m-hum">
+      <div class="lab">💧 HUMIDITY</div>
+      <div class="val" data-skel><span class="skeleton dark sk-title" style="display:inline-block;width:90px;"></span></div>
+      <div class="bar"><span></span></div>
+    </div>
+    <div class="metric" id="m-nh3">
+      <div class="lab">🧪 NH₃ (AMMONIA)</div>
+      <div class="val" data-skel><span class="skeleton dark sk-title" style="display:inline-block;width:90px;"></span></div>
+      <div class="bar"><span></span></div>
+    </div>
+    <div class="metric" id="m-h2s">
+      <div class="lab">🧫 H₂S (SULFIDE)</div>
+      <div class="val" data-skel><span class="skeleton dark sk-title" style="display:inline-block;width:90px;"></span></div>
+      <div class="bar"><span></span></div>
+    </div>
+  </section>
 
-<div class="container">
+  <!-- CHART -->
+  <section class="chart-card reveal" data-d="4">
+    <div class="ttl">
+      <h3>📈 แนวโน้มค่าก๊าซ (เรียลไทม์)</h3>
+      <div class="legend"><span><i style="background:#2196ff;"></i>NH₃</span><span><i style="background:#ff4f91;"></i>H₂S</span></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-skel" id="chartSkel">
+        <div class="b skeleton dark" style="height:40%;"></div><div class="b skeleton dark" style="height:65%;"></div>
+        <div class="b skeleton dark" style="height:50%;"></div><div class="b skeleton dark" style="height:80%;"></div>
+        <div class="b skeleton dark" style="height:60%;"></div><div class="b skeleton dark" style="height:90%;"></div>
+        <div class="b skeleton dark" style="height:70%;"></div>
+      </div>
+      <canvas id="chart" style="display:none;"></canvas>
+    </div>
+  </section>
 
-
-
-<div class="header">
-
-
-<div class="logo">
-
-🥩 Meat Guard
-
+  <div class="footer-note">© 2026 Meat Guard · ข้อมูลอัปเดตแบบเรียลไทม์ผ่านระบบเซนเซอร์</div>
 </div>
 
-
-<div class="online">
-
-● ONLINE
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="status">
-
-
-
-<div class="loader" id="loader">
-
-⏳
-
-</div>
-
-
-
-
-<div>
-
-
-<h1 id="status">
-
-กำลังวิเคราะห์...
-
-</h1>
-
-
-
-<div class="sub" id="message">
-
-ระบบกำลังตรวจสอบความสดของเนื้อ
-
-</div>
-
-
-
-<div class="progress">
-
-<span id="bar"></span>
-
-</div>
-
-
-
-<div class="time" id="time">
-
-กำลังวิเคราะห์ 0 / 5 นาที
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-<div class="grid">
-
-
-
-<div class="card">
-
-<h3>TEMPERATURE</h3>
-
-<div class="value">
-
-<span id="temp">--</span> °C
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<h3>HUMIDITY</h3>
-
-<div class="value">
-
-<span id="hum">--</span> %
-
-</div>
-
-</div>
-
-
-
-
-
-
-<div class="card">
-
-<h3>NH3</h3>
-
-<div class="value">
-
-<span id="nh3">--</span> ppm
-
-</div>
-
-</div>
-
-
-
-
-
-
-<div class="card">
-
-<h3>H2S</h3>
-
-<div class="value">
-
-<span id="h2s">--</span> ppm
-
-</div>
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-<div class="chart">
-
-
-<canvas id="chart"></canvas>
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<script type="module">
-
-
-import {initializeApp}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-
-
-
-import {
-
-getDatabase,
-
-ref,
-
-onValue
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
-
-
-
-
-
-
-const firebaseConfig = {
-
-
-apiKey:"AIzaSyA4sLKQy-mrmfcYNsptYo8fCt0H63gDGE4",
-
-authDomain:"meat-83f83.firebaseapp.com",
-
-databaseURL:"https://meat-83f83-default-rtdb.asia-southeast1.firebasedatabase.app",
-
-projectId:"meat-83f83",
-
-storageBucket:"meat-83f83.firebasestorage.app",
-
-messagingSenderId:"619234872715",
-
-appId:"1:619234872715:web:a9f953a8cb5434ef97338e"
-
-};
-
-
-
-
-
-
-const app = initializeApp(firebaseConfig);
-
-
-const db=getDatabase(app);
-
-
-
-
-
-
-let chart=new Chart(
-
-document.getElementById("chart"),{
-
-
-type:"line",
-
-
-data:{
-
-
-labels:[],
-
-
-datasets:[
-
-
-{
-
-label:"NH3",
-
-data:[],
-
-borderColor:"#2196ff"
-
-},
-
-
-{
-
-label:"H2S",
-
-data:[],
-
-borderColor:"#ff4f91"
-
-}
-
-
-]
-
-}
-
-}
-
-);
-
-
-
-
-
-
-
-
-
-
-onValue(
-
-ref(db,"meat/latest"),
-
-snap=>{
-
-
-let d=snap.val();
-
-
-if(!d)return;
-
-
-
-let startTime = localStorage.getItem("startTime");
-
-if(!startTime){
-
-startTime = Date.now();
-
-localStorage.setItem(
-"startTime",
-startTime
-);
-
-}
-
-
-let elapsed = Date.now() - startTime;
-
-
-let minute = Math.floor(
-elapsed / 60000
-);
-
-
-if(minute > 5){
-
-minute = 5;
-
-}
-
-
-
-
-
-if(minute < 5){
-
-
-
-document.getElementById("loader").style.display="flex";
-
-
-document.getElementById("status").innerHTML=
-
-"กำลังวิเคราะห์...";
-
-
-
-document.getElementById("message").innerHTML=
-
-"ระบบกำลังตรวจสอบความสดของเนื้อ";
-
-
-
-
-document.getElementById("time").innerHTML=
-
-"กำลังวิเคราะห์ "+minute+" / 5 นาที";
-
-
-
-document.getElementById("bar").style.width=
-
-(minute/5*100)+"%";
-
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-// เสร็จแล้ว
-
-
-
-document.getElementById("loader").style.animation="none";
-
-
-document.getElementById("loader").innerHTML="✓";
-
-
-
-document.getElementById("status").innerHTML=
-
-d.status;
-
-
-
-
-document.getElementById("message").innerHTML=
-
-"วิเคราะห์เสร็จแล้ว";
-
-
-
-
-document.getElementById("temp").innerHTML=d.temp;
-
-
-document.getElementById("hum").innerHTML=d.humidity;
-
-
-document.getElementById("nh3").innerHTML=d.nh3;
-
-
-document.getElementById("h2s").innerHTML=d.h2s;
-
-
-
-document.getElementById("bar").style.width="100%";
-
-
-
-});
-
-
-
-
-
-
-
-
-
-
-onValue(
-
-ref(db,"meat/history"),
-
-snap=>{
-
-
-let data=snap.val();
-
-
-if(!data)return;
-
-
-
-let arr=Object.values(data);
-
-
-
-chart.data.labels=
-
-arr.map(x=>x.minute);
-
-
-
-chart.data.datasets[0].data=
-
-arr.map(x=>x.nh3);
-
-
-
-chart.data.datasets[1].data=
-
-arr.map(x=>x.h2s);
-
-
-
-chart.update();
-
-
-}
-
-);
-
-
-
+<!-- ============ Monitor controller (runs even if Firebase fails) ============ -->
+<script src="assets/js/app.js"></script>
+<script>
+(function () {
+  const MG = window.MeatGuard;
+  if (!MG.guard()) return;
+
+  const $ = (id) => document.getElementById(id);
+  const ANALYSIS_MIN = 5;
+
+  if (!localStorage.getItem("mg_startTime")) localStorage.setItem("mg_startTime", Date.now());
+
+  let chart = null, hasData = false, demoTimer = null, isDemo = false, latest = null;
+
+  function buildChart() {
+    if (chart) return;
+    $("chartSkel").style.display = "none";
+    const cv = $("chart"); cv.style.display = "block";
+    chart = new Chart(cv, {
+      type: "line",
+      data: { labels: [], datasets: [
+        { label: "NH₃", data: [], borderColor: "#2196ff", backgroundColor: "rgba(33,150,255,.12)", fill: true, tension: .35, pointRadius: 2 },
+        { label: "H₂S", data: [], borderColor: "#ff4f91", backgroundColor: "rgba(255,79,145,.12)", fill: true, tension: .35, pointRadius: 2 }
+      ]},
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: "#1b2a37" }, ticks: { color: "#7e93a7" } },
+          y: { grid: { color: "#1b2a37" }, ticks: { color: "#7e93a7" }, beginAtZero: true }
+        } }
+    });
+    $("chart").parentElement.querySelector("#chartSkel")?.remove();
+    $("chart").closest(".chart-box").style.minHeight = "300px";
+  }
+
+  function levelFor(kind, v) {
+    if (kind === "nh3") return v < 10 ? "ok" : v <= 25 ? "warn" : "bad";
+    if (kind === "h2s") return v < 1 ? "ok" : v <= 5 ? "warn" : "bad";
+    return "ok";
+  }
+  function setMetric(id, kind, value, unit, pct) {
+    const card = $(id);
+    card.querySelector(".val").innerHTML = value + ' <small>' + unit + '</small>';
+    const lvl = levelFor(kind, value);
+    card.classList.remove("lvl-ok", "lvl-warn", "lvl-bad");
+    card.classList.add("lvl-" + lvl);
+    card.querySelector(".bar span").style.width = Math.min(100, pct) + "%";
+  }
+
+  function applyData(d) {
+    latest = d;
+    setMetric("m-temp", "temp", round1(d.temp), "°C", (d.temp / 30) * 100);
+    setMetric("m-hum", "hum", round1(d.humidity), "%", d.humidity);
+    setMetric("m-nh3", "nh3", round1(d.nh3), "ppm", (d.nh3 / 40) * 100);
+    setMetric("m-h2s", "h2s", round1(d.h2s), "ppm", (d.h2s / 10) * 100);
+    hasData = true;
+  }
+
+  function applyHistory(arr) {
+    if (!arr || !arr.length) return;
+    buildChart();
+    chart.data.labels = arr.map((x) => x.minute);
+    chart.data.datasets[0].data = arr.map((x) => x.nh3);
+    chart.data.datasets[1].data = arr.map((x) => x.h2s);
+    chart.update();
+  }
+
+  function verdictOf(d) {
+    const a = levelFor("nh3", d.nh3), b = levelFor("h2s", d.h2s);
+    const worst = [a, b].includes("bad") ? "bad" : [a, b].includes("warn") ? "warn" : "ok";
+    if (worst === "ok")   return { key: "ok",   txt: "🟢 สดมาก (FRESH)",  cls: "v-fresh",   rc: "#22c55e", ico: "✓" };
+    if (worst === "warn") return { key: "warn", txt: "🟡 ควรรีบใช้ (WARNING)", cls: "v-warn", rc: "#f59e0b", ico: "!" };
+    return { key: "bad", txt: "🔴 ไม่ควรบริโภค (SPOILED)", cls: "v-spoiled", rc: "#ef4444", ico: "✕" };
+  }
+
+  function showVerdict() {
+    const d = latest || { temp: 4, humidity: 70, nh3: 6, h2s: .4, status: "FRESH" };
+    if (!hasData) applyData(d);
+    const v = verdictOf(d);
+    const ring = $("ring");
+    ring.classList.remove("spin");
+    ring.style.setProperty("--p", 100);
+    ring.style.setProperty("--rc", v.rc);
+    $("ringIco").textContent = v.ico;
+    $("ringPct").textContent = "100%";
+    $("status").textContent = d.status || v.txt.replace(/^[^A-Za-zก-๙]+/, "");
+    $("message").textContent = "วิเคราะห์เสร็จสมบูรณ์";
+    $("bar").style.width = "100%";
+    $("time").textContent = "การวิเคราะห์เสร็จสิ้น";
+    const badge = $("vBadge");
+    badge.className = "v-badge " + v.cls;
+    badge.textContent = v.txt;
+    $("verdict").classList.add("show");
+    localStorage.setItem("mg_lastVerdict", v.key);
+  }
+
+  function tickProgress() {
+    const start = +localStorage.getItem("mg_startTime");
+    const elapsedMin = (Date.now() - start) / 60000;
+    if (elapsedMin >= ANALYSIS_MIN) { showVerdict(); return true; }
+    const pct = Math.min(100, (elapsedMin / ANALYSIS_MIN) * 100);
+    $("ring").style.setProperty("--p", pct);
+    $("ringPct").textContent = Math.floor(pct) + "%";
+    $("bar").style.width = pct + "%";
+    $("time").textContent = "กำลังวิเคราะห์ " + Math.floor(elapsedMin) + " / " + ANALYSIS_MIN + " นาที";
+    return false;
+  }
+
+  const round1 = (n) => Math.round((+n) * 10) / 10;
+
+  /* ---- Demo mode: simulate sensor data if no hardware/Firebase ---- */
+  function startDemo() {
+    if (isDemo || hasData) return;
+    isDemo = true;
+    $("conn").classList.add("demo");
+    $("conn").innerHTML = '<span class="dot"></span> DEMO MODE';
+    let t = 4 + Math.random() * 2, h = 65 + Math.random() * 10;
+    let nh3 = 5 + Math.random() * 3, h2s = .3 + Math.random() * .4;
+    const hist = [];
+    let minute = 0;
+    const gen = () => {
+      nh3 += Math.random() * 2.2; h2s += Math.random() * .5;
+      t += (Math.random() - .5); h += (Math.random() - .5) * 2;
+      applyData({ temp: t, humidity: h, nh3, h2s, status: "ANALYZING" });
+      hist.push({ minute: minute + "m", nh3: round1(nh3), h2s: round1(h2s) });
+      if (hist.length > 12) hist.shift();
+      applyHistory(hist);
+      minute++;
+    };
+    gen();
+    demoTimer = setInterval(gen, 1600);
+  }
+
+  // expose for the Firebase module
+  window.MGMonitor = {
+    realData(d) { isDemo = false; if (demoTimer) { clearInterval(demoTimer); demoTimer = null; }
+      $("conn").classList.remove("demo"); $("conn").innerHTML = '<span class="dot"></span> ONLINE';
+      applyData(d); },
+    realHistory(arr) { applyHistory(arr); }
+  };
+
+  // controls
+  $("skipBtn").addEventListener("click", () => {
+    localStorage.setItem("mg_startTime", Date.now() - ANALYSIS_MIN * 60000 - 1000);
+    showVerdict();
+    MG.toast("แสดงผลการวิเคราะห์", "ok");
+  });
+  $("resetBtn").addEventListener("click", () => {
+    localStorage.setItem("mg_startTime", Date.now());
+    MG.toast("เริ่มการตรวจใหม่", "ok");
+    setTimeout(() => location.reload(), 400);
+  });
+  $("backChip").addEventListener("click", (e) => { e.preventDefault(); MG.go("category.html"); });
+
+  // run
+  window.addEventListener("load", () => {
+    if (!tickProgress()) setInterval(tickProgress, 1000);
+    // if no real data shortly, switch to demo so the page is usable without hardware
+    setTimeout(() => { if (!hasData) startDemo(); }, 2600);
+  });
+})();
 </script>
 
-
-
+<!-- ============ Firebase (optional real device data) ============ -->
+<script type="module">
+  try {
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js");
+    const { getDatabase, ref, onValue } = await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js");
+    const firebaseConfig = {
+      apiKey:"AIzaSyA4sLKQy-mrmfcYNsptYo8fCt0H63gDGE4",
+      authDomain:"meat-83f83.firebaseapp.com",
+      databaseURL:"https://meat-83f83-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId:"meat-83f83",
+      storageBucket:"meat-83f83.firebasestorage.app",
+      messagingSenderId:"619234872715",
+      appId:"1:619234872715:web:a9f953a8cb5434ef97338e"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    onValue(ref(db, "meat/latest"), (snap) => {
+      const d = snap.val(); if (d && window.MGMonitor) window.MGMonitor.realData(d);
+    });
+    onValue(ref(db, "meat/history"), (snap) => {
+      const data = snap.val(); if (data && window.MGMonitor) window.MGMonitor.realHistory(Object.values(data));
+    });
+  } catch (err) {
+    console.warn("Firebase unavailable — running in demo mode.", err);
+  }
+</script>
 </body>
-
-<button class="back-btn" onclick="history.back()">
-
-← ย้อนกลับ
-
-</button>
 </html>
